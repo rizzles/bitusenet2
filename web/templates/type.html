@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/static/css/style.css">
+	<title>Design</title>
+	<style>
+	html {
+		height: 100%;
+	}
+	body {
+		//background-image: url("/static/images/bg.png"), linear-gradient(137deg, #F76920 0%, #F1863C 67%);
+		background: url("/static/images/server.jpg") no-repeat center center fixed;
+		-webkit-background-size: cover;
+	}
+	</style>
+</head>
+<body>
+
+	<section class="first">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12">
+					<h1>FROM THE ROCKIES TO THE SIERRAS.</h1>
+					<p>
+						I grew up 45 minutes away from the Front Range of the Canadian Rocky Mountains in Calgary, AB. Living so close to the Rockies meant I spent a lot of time hiking in them and as a result, I know the majority of the peaks, trails, valleys, ridges, rivers, and streams like the back of my hand.
+					</p>
+					<p>
+						The region to me is like the streets of your home town. It doesn’t matter how long you’re gone for: the moment you return you can name and navigate the winding streets with ease.
+					</p>	
+					<p>
+						I’m the annoying friend that points out peaks while driving down the Trans-Canada highway: “See that ridge there off to the right? That’s Centennial Ridge, we went up it last weekend, was such a bitch to hike in the snow.”					
+					</p>
+					<p>
+						So I knew when moving to San Francisco, I would have to learn more than just the names of the streets—but also the valleys, ridges, trails, peaks and domes of the Sierras. A brand new range to explore and conquer. Thankfully I had a friend, Kyle Frost, who has worked in the Valley to help me get my bearings: On our first overnighter to the park we definitely hit the ground running taking a 3 day trip to tackle as much as we could in our limited time.
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+	<hr>
+	<section class="first" style="text-align:center;">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12">
+					<h1>SENTINEL DOME</h1>
+					<p>
+						As with most of our weekend trips, we left San Francisco late on Friday night after wrapping up designs and emails. We arrived at the Sentinel Dome trailhead after midnight and hiked the short trail up to the top in the pitch black of night under a perfectly clear night sky. We opted to leave our headlamps off to allow our eyes to adjust to the stars.
+					</p>
+					<p>
+						After shooting the stars from the top of the dome we broke out the bags and squeezed in a few hours of sleep before dawn.
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-8">
+					<div id="qrcode" style="width:100px; height:100px;"></div>
+				</div>
+			</div>
+		</div>
+	</scetion>
+
+</body>	
+<script src="/static/js/jquery-1.10.2.js"></script>
+<script src="/static/js/javascript.js"></script>
+<script src="/static/js/qrcode.js"></script>
+<script>
+$(document).ready(function() {
+	var qrcode = new QRCode(document.getElementById("qrcode"), {
+	    text: "bitcoin:1LKBHMEY5hnB8PeCXAq2FkRCb13rMHawfP?amount=0.0025",
+	    width: 128,
+	    height: 128,
+	    colorDark : "#000000",
+	    colorLight : "#ffffff",
+	    correctLevel : QRCode.CorrectLevel.H
+	});
+})
+</script>
+</html>
