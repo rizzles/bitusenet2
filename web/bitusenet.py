@@ -29,7 +29,6 @@ class Application(tornado.web.Application):
             (r"/transaction", TransactionHandler),
             (r"/socket", WebSocketHandler),
 
-            (r"/forms", FormsHandler),
             (r"/javascript", JavascriptHandler),
             (r"/brand", BrandHandler),
             (r"/type", TypeHandler),
@@ -183,11 +182,6 @@ class LogoutHandler(BaseHandler):
         self.clear_cookie('bitusent')
         self.clear_all_cookie()
         self.redirect('/')
-
-
-class FormsHandler(BaseHandler):
-    def get(self):
-        self.render("forms.html", price=220, currency='max', address='mKghRFvT4zqGuZHWY3QAXNtnWi5EJPXp2d')
 
 
 class JavascriptHandler(BaseHandler):

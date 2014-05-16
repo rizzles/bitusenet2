@@ -15,10 +15,10 @@
 			<div class="row">
 				<div class="col-xs-6">
 					<h4>{{price}} {{currency}} {{address}}</h4>
+					<p id="socket"></p>
 
 					<div id="qrcode"></div>
 					<a href="{{currency}}coin:{{address}}?amount={{price}}&label=bitusenet.com&message=1%20months%20usenet%20access">{{currency}}coin</a>
-					<div class="socket"></div>
 				</div>
 			</div>
 		</div>
@@ -41,18 +41,15 @@ $(document).ready(function() {
 	});
 
 	if (Modernizr.websockets) {
-		$(".socket").text("Websockets supported");
-	} else {
-		$(".socket").text("Websockets not supported");
+		$("#socket").text("This page will update as soon as we receive the coins");
+		var ws = new WebSocket("ws://ec2-54-221-32-214.compute-1.amazonaws.com:8000/socket?address={{address}}");
+		ws.onopen = function() {
+			ws.send("Message to send");
+		};
+		ws.onmessage = function (e) {
+			$("#socket").text(e.data);
+		};
 	}
-
-	var ws = new WebSocket("ws://ec2-54-221-32-214.compute-1.amazonaws.com:8000/socket?address={{address}}");
-	ws.onopen = function() {
-		ws.send("Message to send");
-	};
-	ws.onmessage = function (e) {
-		$(".socket").text(e.data);
-	};
 })
 
 </script>
