@@ -46,7 +46,7 @@ $(document).ready(function() {
 		$(".socket").text("Websockets not supported");
 	}
 
-	var ws = new WebSocket("ws://localhost:8000/socket?address={{address}}");
+	var ws = new WebSocket("ws://ec2-54-221-32-214.compute-1.amazonaws.com:8000/socket?address={{address}}");
 	ws.onopen = function() {
 		ws.send("Message to send");
 	};

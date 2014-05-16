@@ -158,6 +158,8 @@ class TransactionHandler(BaseHandler):
     def get(self):
         address = self.get_argument('address')
         currency = self.get_argument('currency')
+        print address, currency
+        print clients
         if address in clients:
             clients[address]['object'].write_message("%s received"%currency)
 
@@ -165,6 +167,7 @@ class TransactionHandler(BaseHandler):
 class WebSocketHandler(tornado.websocket.WebSocketHandler):
     def open(self, *args):
         self.address = self.get_argument("address")
+        print "websocket opened"
         clients[self.address] = {"address": self.address, "object": self}
 
     def on_message(self, message):
@@ -184,7 +187,7 @@ class LogoutHandler(BaseHandler):
 
 class FormsHandler(BaseHandler):
     def get(self):
-        self.render("forms.html")
+        self.render("forms.html", price=220, currency='max', address='mKghRFvT4zqGuZHWY3QAXNtnWi5EJPXp2d')
 
 
 class JavascriptHandler(BaseHandler):
