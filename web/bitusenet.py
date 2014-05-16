@@ -97,9 +97,11 @@ class SignupHandler(BaseHandler):
         currency = self.get_argument('currency', None)
         price = self.mongodb.currencies.find_one()[currency]['charge']
 
+        logging.info('making request for new addres for %s'%currency)
         client = tornado.httpclient.AsyncHTTPClient()
         response = yield tornado.gen.Task(client.fetch, 'http://ec2-54-82-35-88.compute-1.amazonaws.com:8000/new_address/%s'%currency)        
         address = response.body
+        logging.info('address received %s'%address)
 
         if not username:
             logging.error('username is empty on signup')  
@@ -158,8 +160,6 @@ class TransactionHandler(BaseHandler):
     def get(self):
         address = self.get_argument('address')
         currency = self.get_argument('currency')
-        print address, currency
-        print clients
         if address in clients:
             clients[address]['object'].write_message("%s received"%currency)
 
