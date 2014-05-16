@@ -115,7 +115,7 @@ class SignupHandler(BaseHandler):
             email = email.lower()
 
         # Check to see if username already exists
-        exists = self.mongodb.bitusenet.find_one({'username': username})
+        exists = self.mongodb.users.find_one({'username': username})
         if exists:
             logging.error('username exists on website')
             price = self.mongodb.currencies.find_one()
@@ -148,7 +148,7 @@ class SignupHandler(BaseHandler):
                 'uid': uid
                 }
 
-        self.mongodb.bitusenet.insert(user)
+        self.mongodb.users.insert(user)
         self.set_cookie('bitusenet', username)
         logging.info('Account created for %s with aff of %s'%(username, aff))
         self.render("success.html", address=address, price=price, currency=currency)
