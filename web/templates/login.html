@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	{% include "modules/description.html" %}
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="{{ static_url('css/style.css') }}">
+	<title>Bitusenet • Usenet access for crypto currencies</title>
+	<style>
+
+@-webkit-keyframes shake {
+  0%, 100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+
+  10%, 30%, 50%, 70%, 90% {
+    -webkit-transform: translateX(-10px);
+    transform: translateX(-10px);
+  }
+
+  20%, 40%, 60%, 80% {
+    -webkit-transform: translateX(10px);
+    transform: translateX(10px);
+  }
+}
+
+@keyframes shake {
+  0%, 100% {
+    -webkit-transform: translateX(0);
+    -ms-transform: translateX(0);
+    transform: translateX(0);
+  }
+
+  10%, 30%, 50%, 70%, 90% {
+    -webkit-transform: translateX(-10px);
+    -ms-transform: translateX(-10px);
+    transform: translateX(-10px);
+  }
+
+  20%, 40%, 60%, 80% {
+    -webkit-transform: translateX(10px);
+    -ms-transform: translateX(10px);
+    transform: translateX(10px);
+  }
+}
+
+.shake {
+  -webkit-animation-name: shake;
+  animation-name: shake;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+	</style>
+</head>
+<body>
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-6">
+					<form action="/signup" method="POST" id="login-form">
+					<div class="form-group" id="uname-group">
+						<label for="uname" class="control-label" id="uname-label">Username</label>
+						<input type="text" name="uname" id="uname" class="form-control" tabindex="1" placeholder="Username" autofocus="autofocus">
+					</div>
+					<div class="form-group" id="password-group">
+						<label for="password" class="control-label" id="password-label">Password</label>
+						<input type="text" name="password" id="password" class="form-control" tabindex="2" placeholder="Password">
+					</div>
+					<div class="form-group">
+						<button type="submit" tabindex="3" class="btn btn-primary" id="login">Login</button>
+					</div>
+					</form>
+
+					<div id="qrcode"></div>
+					<a href="maxcoin:1LKBHMEY5hnB8PeCXAq2FkRCb13rMHawfP?amount=0.0025&label=max.bitusenet.com&message=1%20months%20usenet%20access">maxcoin</a>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>	
+
+<script src="/static/js/jquery-1.10.2.js"></script>
+<script src="/static/js/javascript.js"></script>
+<script>
+
+$(document).ready(function() {
+	$("#login-form").submit(function(e) {
+		e.preventDefault();
+		$('#login').attr('disabled', 'disabled');
+		$("#uname-label").text("Username not found");
+		$("#uname-group").addClass('shake').addClass('has-error');
+	})
+
+	$('#uname-group').on('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+		$("#uname-group").removeClass('shake');
+		$('#login').removeAttr('disabled');
+	});	
+})
+
+</script>
+</html>

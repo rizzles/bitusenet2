@@ -1,8 +1,8 @@
 import pymongo
-import elasticsearch
+#import elasticsearch
 
 mongoconnection = pymongo.Connection('50.17.28.132', 27017)
-mongodb = mongoconnection.scaffolding
+mongodb = mongoconnection.maxusenet
 
-es = elasticsearch.Elasticsearch("54.196.227.209:9200")
+#es = elasticsearch.Elasticsearch("54.196.227.209:9200")
 

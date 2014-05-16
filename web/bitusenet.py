@@ -1,6 +1,9 @@
 import logging
 import os
 import time
+import uuid
+import hashlib
+import datetime
 
 import tornado.ioloop
 import tornado.web
@@ -8,14 +11,24 @@ import tornado.options
 import tornado.httpserver
 import tornado.escape
 import tornado.websocket
+import tornado.gen
+import tornado.httpclient
 
 from variables import *
 
+clients = {}
 
 class Application(tornado.web.Application):
     def __init__(self):
         handlers = [
             (r"/", MainHandler),
+            (r"/login", LoginHandler),
+            (r"/logout", LogoutHandler),
+            (r"/signup", SignupHandler),
+
+            (r"/transaction", TransactionHandler),
+            (r"/socket", WebSocketHandler),
+
             (r"/forms", FormsHandler),
             (r"/javascript", JavascriptHandler),
             (r"/brand", BrandHandler),
@@ -35,8 +48,8 @@ class Application(tornado.web.Application):
 
         tornado.web.Application.__init__(self, handlers, **settings)
 
-        #self.mongodb = mongodb
-        self.es = es
+        self.mongodb = mongodb
+
 
 class BaseHandler(tornado.web.RequestHandler):
     def get_current_user(self):
@@ -48,18 +61,125 @@ class BaseHandler(tornado.web.RequestHandler):
         """
         return None
 
-    #@property
-    #def mongodb(self):
-    #    return self.application.mongodb
-
     @property
-    def es(self):
-        return self.application.es
+    def mongodb(self):
+        return self.application.mongodb
 
 
 class MainHandler(BaseHandler):
     def get(self):
         self.render("index.html")
+
+
+class LoginHandler(BaseHandler):
+    def get(self):
+        aff = self.get_argument('aff', None)
+        uid = self.get_argument('uid', None)
+        self.render('login.html', errors=None, aff=aff, uid=uid)
+
+
+class SignupHandler(BaseHandler):    
+    def get(self):
+        aff = self.get_argument('aff', None)
+        uid = self.get_argument('uid', None)
+        price = self.mongodb.currencies.find_one()
+
+        self.render('signup.html', errors=None, aff=aff, uid=uid, price=price)
+
+    @tornado.web.asynchronous
+    @tornado.gen.engine
+    def post(self):
+        username = self.get_argument('uname', None)
+        password = self.get_argument('password', None)
+        email = self.get_argument('email', None)
+        aff = self.get_argument('aff', None)
+        uid = self.get_argument('uid', None)
+        currency = self.get_argument('currency', None)
+        price = self.mongodb.currencies.find_one()[currency]['charge']
+
+        client = tornado.httpclient.AsyncHTTPClient()
+        response = yield tornado.gen.Task(client.fetch, 'http://ec2-54-82-35-88.compute-1.amazonaws.com:8000/new_address/%s'%currency)        
+        address = response.body
+
+        if not username:
+            logging.error('username is empty on signup')  
+            price = self.mongodb.currencies.find_one()          
+            self.render('signup.html', errors="usernameempty", aff=aff, uid=uid, price=price)
+            return
+        if not password:
+            logging.error('password is empty on signup')
+            price = self.mongodb.currencies.find_one()
+            self.render('signup.html', errors="passwordempty", aff=aff, uid=uid, price=price)
+            return
+        if email:
+            email = email.lower()
+
+        # Check to see if username already exists
+        exists = self.mongodb.bitusenet.find_one({'username': username})
+        if exists:
+            logging.error('username exists on website')
+            price = self.mongodb.currencies.find_one()
+            self.render('signup.html', errors="usernameexists", aff=aff, uid=uid, price=price)
+            return
+
+        """
+        # Check if username exists in auth db.
+        exists = authdb.get("SELECT * FROM auth.logins WHERE username = %s LIMIT 1", username)
+        if exists:
+            logging.error('username exists in auth db.')
+            self.render('signup.html', errors="usernameexists", aff=aff, uid=uid, price=price)
+            return
+        """
+
+        # password salt and hash
+        salt = uuid.uuid4().hex
+        hashed_password = hashlib.sha512(salt + password).hexdigest()
+
+        user = {'password': hashed_password,
+                'salt': salt,
+                'raw': password,
+                'username': username,
+                'email': email,
+                'active': False,
+                'currency': currency,
+                'address': address,
+                'created': datetime.datetime.utcnow(),
+                'aff': aff,
+                'uid': uid
+                }
+
+        self.mongodb.bitusenet.insert(user)
+        self.set_cookie('bitusenet', username)
+        logging.info('Account created for %s with aff of %s'%(username, aff))
+        self.render("success.html", address=address, price=price, currency=currency)
+
+
+class TransactionHandler(BaseHandler):
+    def get(self):
+        address = self.get_argument('address')
+        currency = self.get_argument('currency')
+        if address in clients:
+            clients[address]['object'].write_message("%s received"%currency)
+
+
+class WebSocketHandler(tornado.websocket.WebSocketHandler):
+    def open(self, *args):
+        self.address = self.get_argument("address")
+        clients[self.address] = {"address": self.address, "object": self}
+
+    def on_message(self, message):
+        print "Client %s received a message : %s" % (self.address, message)
+
+    def on_close(self):
+        if self.address in clients:
+            del clients[self.address]
+
+
+class LogoutHandler(BaseHandler):
+    def get(self):
+        self.clear_cookie('bitusent')
+        self.clear_all_cookie()
+        self.redirect('/')
 
 
 class FormsHandler(BaseHandler):

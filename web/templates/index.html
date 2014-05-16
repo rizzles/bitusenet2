@@ -2,37 +2,31 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="/static/css/style.css">
-	<title>Scaffolding</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	{% include "modules/description.html" %}
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="{{ static_url('css/style.css') }}">
+	<title>Bitusenet • Usenet access for crypto currencies</title>
 </head>
 <body>
-	<div class="container">
-		<div class="row">
-			<div class="col-xs-12">
-				<i class="icon-camera-retro"></i> icon-camera-retro
-			</div>
-		</div>	
-	</div>
-	<div class="container">
-		<div class="row">
-			<div class="col-xs-8">
-				<p>
-					Nostrud est Portland gastropub helvetica. Brunch single-origin coffee mumblecore four loko readymade flannel, esse tattooed deep v proident accusamus Cosby sweater duis anim velit. Small batch ad pour-over et nulla. Qui pitchfork VHS mumblecore, 3 wolf moon Cosby sweater sapiente aliquip gentrify fixie est dolor 90's sriracha placeat. Gentrify polaroid kogi odio, fixie yr non put a bird on it. Mustache letterpress roof party nisi, tattooed voluptate kale chips retro. Actually labore quinoa bitters viral small batch. 
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12">
 					<a href="bitcoin:1LKBHMEY5hnB8PeCXAq2FkRCb13rMHawfP?amount=0.0025&label=bitusenet&message=1%20months%20usenet%20access">bitcoin</a>
-				</p>
-			</div>
-			<div class="col-xs-4">
-				<img src="/static/images/imac.png" class="img-responsive" alt="Responsive image">
+				</div>
 			</div>
 		</div>
-	</div>
+	</section>
 </body>	
+
 <script src="/static/js/jquery-1.10.2.js"></script>
 <script src="/static/js/javascript.js"></script>
 <script>
+
 $(document).ready(function() {
 	console.log('oh yea');
 })
+
 </script>
 </html>
