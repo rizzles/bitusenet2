@@ -26,7 +26,7 @@ class Application(tornado.web.Application):
             (r"/logout", LogoutHandler),
             (r"/signup", SignupHandler),
 
-            (r"/transaction", TransactionHandler),
+            (r"/transaction", TransactionReceivedHandler),
             (r"/socket", WebSocketHandler),
 
             (r"/javascript", JavascriptHandler),
@@ -158,22 +158,23 @@ class SignupHandler(BaseHandler):
         self.render("success.html", address=address, priceobject=price, price=tornado.escape.json_encode(price), currency=currency)
 
 
-class TransactionHandler(BaseHandler):
+class TransactionReceivedHandler(BaseHandler):
     def get(self):
         address = self.get_argument('address')
         currency = self.get_argument('currency')
+        amount = self.get_argument('amount')
+
         if address in clients:
-            clients[address]['object'].write_message("%s received"%currency)
+            clients[address]['object'].write_message(tornado.escape.json_encode({'amount':amount,'currency':currency})
 
 
 class WebSocketHandler(tornado.websocket.WebSocketHandler):
     def open(self, *args):
         self.address = self.get_argument("address")
-        print "websocket opened"
         clients[self.address] = {"address": self.address, "object": self}
 
     def on_message(self, message):
-        print "Client %s received a message : %s" % (self.address, message)
+        pass
 
     def on_close(self):
         if self.address in clients:
