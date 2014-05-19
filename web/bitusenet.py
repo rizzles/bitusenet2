@@ -165,7 +165,7 @@ class TransactionReceivedHandler(BaseHandler):
         amount = self.get_argument('amount')
 
         if address in clients:
-            clients[address]['object'].write_message(tornado.escape.json_encode({'amount':amount,'currency':currency})
+            clients[address]['object'].write_message(tornado.escape.json_encode({'amount':amount,'currency':currency}))
 
 
 class WebSocketHandler(tornado.websocket.WebSocketHandler):
