@@ -86,7 +86,7 @@ $(document).ready(function() {
 		ws.onmessage = function(e) {
 			var data = e.data;
 			console.log(data);
-			$("#socket").text(data['amount'] + " " + data['currency']);
+			$("#socket").text(data['amount']);
 		};
 	}
 })
