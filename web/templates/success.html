@@ -81,7 +81,7 @@ $(document).ready(function() {
 		$("#socket").text("This page will update as soon as we receive the coins");
 		var ws = new WebSocket("ws://ec2-54-221-32-214.compute-1.amazonaws.com/socket?address={{address}}");
 		ws.onopen = function() {
-			ws.send({{address}});
+			ws.send("{{address}}");
 		};
 		ws.onmessage = function (e) {
 			var data = e.data;
