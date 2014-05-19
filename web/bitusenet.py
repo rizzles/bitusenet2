@@ -77,13 +77,14 @@ class LoginHandler(BaseHandler):
         self.render('login.html', errors=None, aff=aff, uid=uid)
 
 
-class SignupHandler(BaseHandler):    
+class SignupHandler(BaseHandler):
     def get(self):
         aff = self.get_argument('aff', None)
         uid = self.get_argument('uid', None)
         price = self.mongodb.currencies.find_one()
+        del(price['_id'])
 
-        self.render('signup.html', errors=None, aff=aff, uid=uid, price=price)
+        self.render('signup.html', errors=None, aff=aff, uid=uid, priceobject=price, price=tornado.escape.json_encode(price))
 
     @tornado.web.asynchronous
     @tornado.gen.engine
@@ -94,43 +95,43 @@ class SignupHandler(BaseHandler):
         aff = self.get_argument('aff', None)
         uid = self.get_argument('uid', None)
         currency = self.get_argument('currency', None)
-        price = self.mongodb.currencies.find_one()[currency]['charge']
+        price = self.mongodb.currencies.find_one()[currency]['bitusenet']
+
+        if not username:
+            logging.error('username is empty on signup')  
+            price = self.mongodb.currencies.find_one()          
+            self.render('signup.html', errors="usernameempty", aff=aff, uid=uid, price=tornado.escape.json_encode(price), priceobject=price)
+            return
+        if not password:
+            logging.error('password is empty on signup')
+            price = self.mongodb.currencies.find_one()
+            self.render('signup.html', errors="passwordempty", aff=aff, uid=uid, price=tornado.escape.json_encode(price), priceobject=price)
+            return
+        if email:
+            email = email.lower()
+
+        """
+        # Check to see if username already exists
+        exists = self.mongodb.users.find_one({'username': username})
+        if exists:
+            logging.error('username exists on website')
+            price = self.mongodb.currencies.find_one()
+            self.render('signup.html', errors="usernameexists", aff=aff, uid=uid, price=tornado.escape.json_encode(price), priceobject=price)
+            return
+
+        # Check if username exists in auth db.
+        exists = authdb.get("SELECT * FROM auth.logins WHERE username = %s LIMIT 1", username)
+        if exists:
+            logging.error('username exists in auth db.')
+            self.render('signup.html', errors="usernameexists", aff=aff, uid=uid, price=tornado.escape.json_encode(price), priceobject=price)
+            return
+        """
 
         logging.info('making request for new addres for %s'%currency)
         client = tornado.httpclient.AsyncHTTPClient()
         response = yield tornado.gen.Task(client.fetch, 'http://ec2-54-82-35-88.compute-1.amazonaws.com:8000/new_address/%s'%currency)        
         address = response.body
         logging.info('address received %s'%address)
-
-        if not username:
-            logging.error('username is empty on signup')  
-            price = self.mongodb.currencies.find_one()          
-            self.render('signup.html', errors="usernameempty", aff=aff, uid=uid, price=price)
-            return
-        if not password:
-            logging.error('password is empty on signup')
-            price = self.mongodb.currencies.find_one()
-            self.render('signup.html', errors="passwordempty", aff=aff, uid=uid, price=price)
-            return
-        if email:
-            email = email.lower()
-
-        # Check to see if username already exists
-        exists = self.mongodb.users.find_one({'username': username})
-        if exists:
-            logging.error('username exists on website')
-            price = self.mongodb.currencies.find_one()
-            self.render('signup.html', errors="usernameexists", aff=aff, uid=uid, price=price)
-            return
-
-        """
-        # Check if username exists in auth db.
-        exists = authdb.get("SELECT * FROM auth.logins WHERE username = %s LIMIT 1", username)
-        if exists:
-            logging.error('username exists in auth db.')
-            self.render('signup.html', errors="usernameexists", aff=aff, uid=uid, price=price)
-            return
-        """
 
         # password salt and hash
         salt = uuid.uuid4().hex
@@ -152,7 +153,9 @@ class SignupHandler(BaseHandler):
         self.mongodb.users.insert(user)
         self.set_cookie('bitusenet', username)
         logging.info('Account created for %s with aff of %s'%(username, aff))
-        self.render("success.html", address=address, price=price, currency=currency)
+        price = self.mongodb.currencies.find_one()
+        del(price['_id'])
+        self.render("success.html", address=address, priceobject=price, price=tornado.escape.json_encode(price), currency=currency)
 
 
 class TransactionHandler(BaseHandler):
@@ -196,7 +199,9 @@ class BrandHandler(BaseHandler):
 
 class TypeHandler(BaseHandler):
     def get(self):
-        self.render("type.html")
+        price = self.mongodb.currencies.find_one()
+        del(price['_id'])
+        self.render("type.html", price=tornado.escape.json_encode(price))
 
 
 def main():

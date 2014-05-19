@@ -13,10 +13,48 @@
 	<section>
 		<div class="container">
 			<div class="row">
+				<div class="col-xs-7">
+					<h3>Multi Month Discount</h3>
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th></th>
+								<th>3 months</th>
+								<th>6 months</th>
+								<th>12 months</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Savings</td>
+								<td>10% per month</td>
+								<td>15% per month</td>
+								<td>20% per month</td>
+							</tr>
+							<tr>
+								<td>Per Month</td>
+								<td><span class="3permonth">0.013</span> <span class="currency">btc</span></td>
+								<td><span class="6permonth">0.013</span> <span class="currency">btc</span></td>
+								<td><span class="12permonth">0.013</span> <span class="currency">btc</span></td>
+							</tr>
+							<tr>
+								<td>Total</td>
+								<td><span id="3monthtotal"></span> <span class="currency">btc</span></td>
+								<td><span id="6monthtotal"></span> <span class="currency">btc</span></td>
+								<td><span id="12monthtotal"></span> <span class="currency">btc</span></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section>
+		<div class="container">
+			<div class="row">
 				<div class="col-xs-6">
-					<h4>{{price}} {{currency}} <a href="{{currency}}coin:{{address}}?amount={{price}}&label=bitusenet.com&message=1%20months%20usenet%20access">{{address}}</a></h4>
+					<h4>{{priceobject[currency]['bitusenet']}} {{currency}} <a href="{{currency}}coin:{{address}}?amount={{price}}&label=bitusenet.com&message=Usenet%20access">{{address}}</a></h4>
 					<p id="socket"></p>
-
 					<div id="qrcode"></div>
 				</div>
 			</div>
@@ -31,7 +69,7 @@
 
 $(document).ready(function() {
 	var qrcode = new QRCode(document.getElementById("qrcode"), {
-	    text: "{{currency}}coin:{{address}}?amount={{price}}",
+	    text: "{{currency}}coin:{{address}}?amount={{priceobject[currency]['bitusenet']}}",
 	    width: 128,
 	    height: 128,
 	    colorDark : "#000000",
@@ -43,7 +81,7 @@ $(document).ready(function() {
 		$("#socket").text("This page will update as soon as we receive the coins");
 		var ws = new WebSocket("ws://ec2-54-221-32-214.compute-1.amazonaws.com/socket?address={{address}}");
 		ws.onopen = function() {
-			ws.send("Message to send");
+			ws.send("Connect");
 		};
 		ws.onmessage = function (e) {
 			$("#socket").text(e.data);

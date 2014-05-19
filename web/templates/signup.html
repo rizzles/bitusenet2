@@ -58,12 +58,57 @@
 	</style>
 </head>
 <body>
+	<form action="/signup" method="POST" id="signup-form">
 	<section>
 		<div class="container">
 			<div class="row">
-				<div class="col-xs-6">
-					<form action="/signup" method="POST" id="signup-form">
-					<h3>Usenet access for crypto currencies</h3>
+				<div class="col-xs-7">
+					<h3>Select Currency</h3>
+					<table class="table table-striped">
+						<tbody>
+							<tr>
+								<td>
+									<label>
+										<input checked type="radio" value="btc" name="currency"> <img src="/static/images/btclogosmall.png"> Bitcoin
+									</label>
+								</td>
+								<td>{{priceobject['btc']['bitusenet']}} btc</td>
+							</tr>
+							<tr>
+								<td>
+									<label>
+										<input type="radio" value="ltc" name="currency"> <img src="/static/images/ltclogosmall.png"> Litecoin
+									</label>
+								</td>
+								<td>{{priceobject['ltc']['bitusenet']}} ltc</td>
+							</tr>
+							<tr>
+								<td>
+									<label>
+										<input type="radio" value="doge" name="currency"> <img src="/static/images/dogelogosmall.png"> Dogecoin
+									</label>
+								</td>
+								<td>{{priceobject['doge']['bitusenet']}} doge</td>
+							</tr>
+							<tr>
+								<td>
+									<label>
+										<input type="radio" value="max" name="currency"> <img src="/static/images/maxlogosmall.png"> Maxcoin
+									</label>
+								</td>
+								<td>{{priceobject['max']['bitusenet']}} max</td>
+							</tr>							
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section>		
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-7">
+					<h3>Server Login</h3>
 					<div class="form-group" id="uname-group">
 						<label for="uname" class="control-label" id="uname-label">Username</label>
 						<input type="text" name="uname" id="uname" class="form-control" tabindex="1" placeholder="Username" autofocus="autofocus">
@@ -73,48 +118,111 @@
 						<input type="password" name="password" id="password" class="form-control" tabindex="2" placeholder="Password">
 					</div>
 					<div class="form-group" id="email-group">
-						<label for="password" class="control-label" id="email-label">Email Address (Optional)</label>
+						<label for="password" class="control-label" id="email-label">Email (Optional)</label>
 						<input type="text" name="email" id="email" class="form-control" tabindex="3" placeholder="Email Address">
 						<small>Providing an email address will allow you to reset your password. We'll never spam you.</small>
 					</div>
-					<h4>Choose currency</h4>
-					<h5>Deposit address is show on the next page</h5>
-					<table class="table table-striped">
-						<tbody>
-							<tr>
-								<td><label><input checked type="radio" value="btc" name="currency"> <img src="/static/images/btclogosmall.png"> Bitcoin</label></td>
-								<td>{{price['btc']['charge']}} btc</td>
-							</tr>
-							<tr>
-								<td><label><input type="radio" value="ltc" name="currency"> <img src="/static/images/ltclogosmall.png"> Litecoin</label></td>
-								<td>{{price['ltc']['charge']}} ltc</td>
-							</tr>
-							<tr>
-								<td><label><input type="radio" value="doge" name="currency"> <img src="/static/images/dogelogosmall.png"> Dogecoin</label></td>
-								<td>{{price['doge']['charge']}} doge</td>
-							</tr>
-							<tr>
-								<td><label><input type="radio" value="max" name="currency"> <img src="/static/images/maxlogosmall.png"> Maxcoin</label></td>
-								<td>{{price['max']['charge']}} max</td>
-							</tr>							
-						</tbody>
-					</table>
-					<div class="form-group">
-						<button type="submit" tabindex="4" class="btn btn-primary" id="signup">Create Account</button>
-					</div>
-					</form>
-
 				</div>
 			</div>
 		</div>
 	</section>
+
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-7">
+					<h3>Multi Month Discount</h3>
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th></th>
+								<th>3 months</th>
+								<th>6 months</th>
+								<th>12 months</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Savings</td>
+								<td>10% per month</td>
+								<td>15% per month</td>
+								<td>20% per month</td>
+							</tr>
+							<tr>
+								<td>Per Month</td>
+								<td><span class="3permonth">0.013</span> <span class="currency">btc</span></td>
+								<td><span class="6permonth">0.013</span> <span class="currency">btc</span></td>
+								<td><span class="12permonth">0.013</span> <span class="currency">btc</span></td>
+							</tr>
+							<tr>
+								<td>Total</td>
+								<td><span id="3monthtotal"></span> <span class="currency">btc</span></td>
+								<td><span id="6monthtotal"></span> <span class="currency">btc</span></td>
+								<td><span id="12monthtotal"></span> <span class="currency">btc</span></td>
+							</tr>
+						</tbody>
+					</table>
+					<button type="submit" class="btn btn-default">Submit</button>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	</form>	
 </body>	
 
 <script src="/static/js/jquery-1.10.2.js"></script>
 <script src="/static/js/javascript.js"></script>
 <script>
 
+function decimals(number) {
+	if (number > 10) {
+		number = number | 0;
+	} else {
+		var length = number.toString().split(".")[1].length;
+		if (length > 5)
+			number = number.toFixed(4);
+	};
+	console.log(number);
+	return number;
+};
+
 $(document).ready(function() {
+	var price = {{price}};
+
+	var threepermonth = price['btc']['bitusenet'] - ((10 * price['btc']['bitusenet']) / 100.0)
+	var sixpermonth = price['btc']['bitusenet'] - ((15 * price['btc']['bitusenet']) / 100.0)
+	var twelvepermonth = price['btc']['bitusenet'] - ((20 * price['btc']['bitusenet']) / 100.0)
+
+	$(".currency").text('btc');
+	$(".3permonth").text(decimals(threepermonth));
+	$("#3monthtotal").text(decimals(threepermonth * 3));	
+
+	$(".6permonth").text(decimals(sixpermonth));
+	$("#6monthtotal").text(decimals(sixpermonth * 6));
+
+	$(".12permonth").text(decimals(twelvepermonth));
+	$("#12monthtotal").text(decimals(twelvepermonth * 12));
+
+	$('input[name=currency]').on('click', function() {
+		var curr = $('input[name=currency]:checked').val();
+
+		var threepermonth = price[curr]['bitusenet'] - ((10 * price[curr]['bitusenet']) / 100.0)
+		var sixpermonth = price[curr]['bitusenet'] - ((15 * price[curr]['bitusenet']) / 100.0)
+		var twelvepermonth = price[curr]['bitusenet'] - ((20 * price[curr]['bitusenet']) / 100.0)
+
+		$(".currency").text(curr);
+		$(".3permonth").text(decimals(threepermonth));
+		$("#3monthtotal").text(decimals(threepermonth * 3));	
+
+		$(".6permonth").text(decimals(sixpermonth));
+		$("#6monthtotal").text(decimals(sixpermonth * 6));
+
+		$(".12permonth").text(decimals(twelvepermonth));
+		$("#12monthtotal").text(decimals(twelvepermonth * 12));				
+
+	});
+
 	$("#signup-form").submit(function(e) {
 		//e.preventDefault();
 		$('#signup').attr('disabled', 'disabled');
