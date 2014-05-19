@@ -164,6 +164,8 @@ class TransactionReceivedHandler(BaseHandler):
         currency = self.get_argument('currency')
         amount = self.get_argument('amount')
 
+        print address, amount, currency
+
         if address in clients:
             clients[address]['object'].write_message(tornado.escape.json_encode({'amount':amount,'currency':currency}))
 
