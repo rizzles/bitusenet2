@@ -83,8 +83,9 @@ $(document).ready(function() {
 		ws.onopen = function() {
 			ws.send("{{address}}");
 		};
-		ws.onmessage = function (e) {
+		ws.onmessage = function(e) {
 			var data = e.data;
+			console.log(data);
 			$("#socket").text(data['amount'] + " " + data['currency']);
 		};
 	}
