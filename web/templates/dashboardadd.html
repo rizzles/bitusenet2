@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	{% include "modules/description.html" %}
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="{{ static_url('css/style.min.css') }}">
+	<title>Bitusenet • Usenet access for crypto currencies</title>
+</head>
+<body id="dashboard">
+	<section style="height:100%">
+		<div class="container-fluid" style="height:100%">
+			<div class="row" style="min-height:100%">
+				<div class="col-xs-12 col-sm-3 col-lg-3 menu">
+					<div class="row">
+						<div class="col-xs-6 col-sm-12">
+							<a href="/"><img src="/static/images/logo.png" width="80"></a>
+							<p class="white center">{{current_user['username']}}</p>
+						</div>
+						<div class="col-xs-6 col-sm-12">
+
+							<ul class="col-lg-offset-5">
+								<li><a href="/dashboard">DASHBOARD</a></li>
+								<li><a href="/dashboard-add" class="active">ADD TIME</a></li>
+								<li><a href="/dashboard-transactions">TRANSACTIONS</a></li>
+								<li><a href="/logout">LOGOUT</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-9 col-lg-8 dashbody" style="min-height:100%">
+					<h3>Add Time</h3>
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="frame">
+								<div class="row">
+									{% if current_user['active'] %}									
+									<div class="col-xs-6 col-sm-8 col-md-6 col-lg-4">
+										<ul>
+											<li><h4 class="nomargin">Account Status</h4></li>
+											<li><p>Active</p></li>
+											<li><h4>Started</h4></li>
+											<li><p>{{current_user['created'].strftime("%b %d, %Y")}}</p></li>
+											<li><h4>Expires</h4></li>
+											<li><p class="nomargin">{{current_user['billing'].strftime("%b %d, %Y")}}</p></li>
+										</ul>
+									</div>
+									<div class="col-xs-6 col-sm-4 col-md-6 col-lg-6">
+										<div class="chart" data-percent="{{((current_user['billing'] - datetime.datetime.utcnow()).days *100/ (current_user['billing'] - current_user['created']).days )}}">
+											<p class="nomargin" style="margin-bottom:5px;">{{(current_user['billing'] - datetime.datetime.utcnow()).days}} days left</p>
+										</div>
+									</div>
+									{% else %}
+									<div class="col-xs-12">
+										<h4 class="nomargin">Your account is currently not active</h4>
+										<p style="margin-top: 12px;">You will not be able to login to the usenet server.</p>
+										Add time to your account to be able to login.
+									</div>
+									{% end %}
+								</div>
+							</div>
+
+							<div class="frame pay">
+								<div class="row">
+									<div class="col-xs-6">
+										<ul>
+											<li><a href="/add-coin?currency=btc"><img src="/static/images/btclogosmall@2x.png" width="32"> Pay with Bitcoin</a></li>
+											<li><a href="/add-coin?currency=ltc"><img src="/static/images/ltclogosmall@2x.png" width="32"> Pay with Litecoin</a></li>
+											<li><a href="/add-coin?currency=drk"><img src="/static/images/drklogosmall@2x.png" width="32"> Pay with Darkcoin</a></li>
+											<li><a href="/add-coin?currency=ppc"><img src="/static/images/ppclogosmall@2x.png" width="32"> Pay with Peercoin</a></li>
+										</ul>
+									</div>
+									<div class="col-xs-6">
+										<ul>
+											<li><a href="/add-coin?currency=vtc"><img src="/static/images/vtclogosmall@2x.png" width="32"> Pay with Vertcoin</a></li>
+											<li><a href="/add-coin?currency=doge"><img src="/static/images/dogelogosmall@2x.png" width="32"> Pay with Dogecoin</a></li>
+											<li><a href="/add-coin?currency=max"><img src="/static/images/maxlogosmall@2x.png" width="32"> Pay with Maxcoin</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							{% for k,v in current_user['price'].iteritems() %}		
+							<div class="frame add">
+								<div class="row">
+									<div class="col-xs-8">
+										<h4 class="nomargin"><img src="/static/images/{{v[-1]['currency']}}logosmall@2x.png" width="32"> Add 30 days</h4>
+										<p>Send {{v[-1]['price']['onemonth']-v[-1]['sent']}} {{v[-1]['currency'].upper()}} to this address in the next 30 minutes. Time will be credited as soon as we receive the coin.</p>
+										<a href="{{longname[v[-1]['currency']]}}coin:{{k}}?amount={{v[-1]['price']['onemonth']}}&label=bitusenet.com&message=Usenet%20access">{{ k }}</a>
+									</div>
+									<div class="col-xs-4 col-md-3">
+										<div id="{{v[-1]['currency']}}qrcodeonemonth"></div>
+										<h4 class="total">
+											{{v[-1]['price']['onemonth']-v[-1]['sent']}} {{v[-1]['currency'].upper()}}
+										</h4>
+									</div>
+								</div>
+							</div>
+							<div class="frame add">
+								<div class="row">
+									<div class="col-xs-8">
+										<h4 class="nomargin"><img src="/static/images/{{v[-1]['currency']}}logosmall@2x.png" width="32"> Add 90 days <span class="gray">(10% savings)</h4>
+										<p>Send {{v[-1]['price']['threemonth']-v[-1]['sent']}} {{v[-1]['currency'].upper()}} to this address in the next 30 minutes. Time will be credited as soon as we receive the coin.</p>
+										<a href="{{longname[v[-1]['currency']]}}coin:{{k}}?amount={{v[-1]['price']['threemonth']}}&label=bitusenet.com&message=Usenet%20access">{{ k }}</a>
+									</div>
+									<div class="col-xs-4 col-md-3">
+										<div id="{{v[-1]['currency']}}qrcodethreemonth"></div>
+										<h4 class="total">
+											{{v[-1]['price']['threemonth']-v[-1]['sent']}} {{v[-1]['currency'].upper()}}
+										</h4>
+									</div>
+								</div>
+							</div>
+
+							<div class="frame add">
+								<div class="row">
+									<div class="col-xs-8">
+										<h4 class="nomargin"><img src="/static/images/{{v[-1]['currency']}}logosmall@2x.png" width="32"> Add 180 days <span class="gray">(15% savings)</h4>
+										<p>Send {{v[-1]['price']['sixmonth']-v[-1]['sent']}} {{v[-1]['currency'].upper()}} to this address in the next 30 minutes. Time will be credited as soon as we receive the coin.</p>
+										<a href="{{longname[v[-1]['currency']]}}coin:{{k}}?amount={{v[-1]['price']['sixmonth']}}&label=bitusenet.com&message=Usenet%20access">{{ k }}</a>
+									</div>
+									<div class="col-xs-4 col-md-3">
+										<div id="{{v[-1]['currency']}}qrcodesixmonth"></div>
+										<h4 class="total">
+											{{v[-1]['price']['sixmonth']-v[-1]['sent']}} {{v[-1]['currency'].upper()}}
+										</h4>
+									</div>
+								</div>
+							</div>
+
+							<div class="frame add">
+								<div class="row">
+									<div class="col-xs-8">
+										<h4 class="nomargin"><img src="/static/images/{{v[-1]['currency']}}logosmall@2x.png" width="32"> Add 365 days <span class="gray">(20% savings)</h4>
+										<p>Send {{v[-1]['price']['twelvemonth']-v[-1]['sent']}} {{v[-1]['currency'].upper()}} to this address in the next 30 minutes. Time will be credited as soon as we receive the coin.</p>
+										<a href="{{longname[v[-1]['currency']]}}coin:{{k}}?amount={{v[-1]['price']['twelvemonth']}}&label=bitusenet.com&message=Usenet%20access">{{ k }}</a>
+									</div>
+									<div class="col-xs-4 col-md-3">
+										<div id="{{v[-1]['currency']}}qrcodetwelvemonth"></div>
+										<h4 class="total">
+											{{v[-1]['price']['twelvemonth']-v[-1]['sent']}} {{v[-1]['currency'].upper()}}
+										</h4>
+									</div>
+								</div>
+							</div>							
+							{% end %}							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>	
+
+<script src="{{ static_url('js/javascript.min.js') }}"></script>
+<script src="{{ static_url('js/qrcode.js') }}"></script>
+<script src="/static/js/jquery.easypiechart.min.js"></script>
+<script>
+
+$(document).ready(function() {
+	$('.chart').easyPieChart({
+		barColor: '#ED6100',
+		scaleColor: false,
+		lineWidth: 14,
+		size: 100,
+		lineCap: 'square',
+		trackColor: '#E3E7E9'
+	});
+
+	{% for k,v in current_user['price'].iteritems() %}
+
+	var {{v[-1]['currency']}}qrcodeone = new QRCode(document.getElementById("{{v[-1]['currency']}}qrcodeonemonth"), {
+	    text: "{{v[-1]['currency']}}coin:{{k}}?amount={{v[-1]['price']['onemonth']}}",
+	    width: 128,
+	    height: 128,
+	    colorDark : "#000000",
+	    colorLight : "#ffffff",
+	    correctLevel : QRCode.CorrectLevel.H
+	});
+
+	var {{v[-1]['currency']}}qrcodethree = new QRCode(document.getElementById("{{v[-1]['currency']}}qrcodethreemonth"), {
+	    text: "{{v[-1]['currency']}}coin:{{k}}?amount={{v[-1]['price']['threemonth']}}",
+	    width: 128,
+	    height: 128,
+	    colorDark : "#000000",
+	    colorLight : "#ffffff",
+	    correctLevel : QRCode.CorrectLevel.H
+	});
+
+	var {{v[-1]['currency']}}qrcodesix = new QRCode(document.getElementById("{{v[-1]['currency']}}qrcodesixmonth"), {
+	    text: "{{v[-1]['currency']}}coin:{{k}}?amount={{v[-1]['price']['sixmonth']}}",
+	    width: 128,
+	    height: 128,
+	    colorDark : "#000000",
+	    colorLight : "#ffffff",
+	    correctLevel : QRCode.CorrectLevel.H
+	});
+
+	var {{v[-1]['currency']}}qrcodetwelve = new QRCode(document.getElementById("{{v[-1]['currency']}}qrcodetwelvemonth"), {
+	    text: "{{v[-1]['currency']}}coin:{{k}}?amount={{v[-1]['price']['twelvemonth']}}",
+	    width: 128,
+	    height: 128,
+	    colorDark : "#000000",
+	    colorLight : "#ffffff",
+	    correctLevel : QRCode.CorrectLevel.H
+	});
+
+	{% end %}
+})
+
+</script>
+</html>

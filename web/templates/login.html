@@ -5,7 +5,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	{% include "modules/description.html" %}
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<link rel="stylesheet" href="{{ static_url('css/style.css') }}">
+	<link rel="stylesheet" href="{{ static_url('css/style.min.css') }}">
 	<title>Bitusenet • Usenet access for crypto currencies</title>
 	<style>
 
@@ -57,50 +57,57 @@
 
 	</style>
 </head>
-<body>
+<body id="login">
 	<section>
 		<div class="container">
 			<div class="row">
-				<div class="col-xs-6">
-					<form action="/signup" method="POST" id="login-form">
-					<div class="form-group" id="uname-group">
-						<label for="uname" class="control-label" id="uname-label">Username</label>
-						<input type="text" name="uname" id="uname" class="form-control" tabindex="1" placeholder="Username" autofocus="autofocus">
-					</div>
-					<div class="form-group" id="password-group">
-						<label for="password" class="control-label" id="password-label">Password</label>
-						<input type="text" name="password" id="password" class="form-control" tabindex="2" placeholder="Password">
-					</div>
-					<div class="form-group">
-						<button type="submit" tabindex="3" class="btn btn-primary" id="login">Login</button>
-					</div>
-					</form>
+				<div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+					<a href="/">
+						<img src="/static/images/logolarge.png" width="100">
+					</a>
+					<form action="/login" method="POST" id="login-form">
 
-					<div id="qrcode"></div>
-					<a href="maxcoin:1LKBHMEY5hnB8PeCXAq2FkRCb13rMHawfP?amount=0.0025&label=max.bitusenet.com&message=1%20months%20usenet%20access">maxcoin</a>
+						<div class="form-group" id="uname-group">
+							{% if errors == 'wronguname' %}
+							<label for="uname" class="control-label" id="uname-label">We could not find that username</label>
+							{% else %}
+							<label for="uname" class="control-label" id="uname-label">Username</label>
+							{% end %}
+							<input type="text" name="uname" id="uname" class="form-control" tabindex="1" autofocus="autofocus">
+						</div>
+
+						<div class="form-group" id="password-group">
+							{% if errors == 'wrongpassword' %}
+							<label for="password" class="control-label" id="password-label">Password did not match</label>
+							{% else %}
+							<label for="password" class="control-label" id="password-label">Password</label>
+							{% end %}							
+							<input type="password" name="password" id="password" class="form-control" tabindex="2">
+						</div>
+
+						<div class="form-group" style="margin-top: 50px;">
+							<button type="submit" tabindex="3" class="btn btn-default opac2" id="login-btn">Login</button>
+							<a href="/signup" tabindex="4" class="btn btn-primary pull-right">Sign Up</a>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
 	</section>
+	<div class="footer">
+		<ul class="list-inline">
+			<li><a href="/support">Support</a></li>
+			<li><a href="/tos">Terms of Service</a></li>
+			<li><a href="/privacy">Privacy Policy</a></li>
+		</ul>
+	</div>
 </body>	
 
-<script src="/static/js/jquery-1.10.2.js"></script>
-<script src="/static/js/javascript.js"></script>
+<script src="{{ static_url('js/javascript.min.js') }}"></script>
 <script>
-
 $(document).ready(function() {
-	$("#login-form").submit(function(e) {
-		e.preventDefault();
-		$('#login').attr('disabled', 'disabled');
-		$("#uname-label").text("Username not found");
-		$("#uname-group").addClass('shake').addClass('has-error');
-	})
-
-	$('#uname-group').on('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
-		$("#uname-group").removeClass('shake');
-		$('#login').removeAttr('disabled');
-	});	
-})
+	Login.init();
+});
 
 </script>
 </html>

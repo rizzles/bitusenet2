@@ -5,28 +5,189 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	{% include "modules/description.html" %}
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<link rel="stylesheet" href="{{ static_url('css/style.css') }}">
+	<link rel="stylesheet" href="{{ static_url('css/style.min.css') }}">
 	<title>Bitusenet • Usenet access for crypto currencies</title>
 </head>
-<body>
-	<section>
+<body id="home">
+
+	<section id="navbar-full">
+		<div id="navbar">
+			<nav class="navbar navbar-ct-black navbar-transparent navbar-fixed-top" role="navigation">
+				<div class="container">
+					<div class="navbar-header">
+						<a class="navbar-brand" href="/"><img src="/static/images/logo.png" width="50"></a>		
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+					</div>
+					<div class="collapse navbar-collapse" id="navbar-collapse-1">
+						<ul class="nav navbar-nav navbar-right">
+							{% if current_user %}
+								<li><a href="/dashboard" class="btn btn-default navbar-btn">Dashboard</a></li>
+							{% else %}
+								<li><a href="/login">Log In</a></li>
+								<li><a href="/signup" class="btn btn-default navbar-btn">Sign Up</a></li>
+							{% end %}								
+						</ul>					
+					</div>
+				</div>
+			</nav>
+		</div>
+	</section>
+
+	<section class="container-fluid" id="first">
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12">
-					<a href="bitcoin:1LKBHMEY5hnB8PeCXAq2FkRCb13rMHawfP?amount=0.0025&label=bitusenet&message=1%20months%20usenet%20access">bitcoin</a>
+					<h1 class="white">Usenet Access for Crypto</h1>
+					<h3>Current monthly price is {{price}} BTC</h3>
+					<a href="/signup" class="btn btn-primary">Sign Up</a>
 				</div>
 			</div>
 		</div>
 	</section>
+
+	<section id="second">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12">
+					<h2>New Features</h2>
+					<p>We've been working hard to improve our integration with crypto networks</p>
+					<div class="row" id="secondfeatures">
+						<div class="col-xs-4">
+							<img src="/static/images/feature1@2x.png" width="60">
+							<h4>0 Confirmations</h4>
+							<p>We don't wait for a confirmation from the crypto network to get your account active. Be ready to login in less then a minute.</p>
+						</div>
+						<div class="col-xs-4">
+							<img src="/static/images/feature2@2x.png" width="46">
+							<h4>Buy Multiple Months</h4>
+							<p>We offer large discounts for purchasing multiple months of access at once. Purchase up to a year in advance for a 20% discount.</p>
+						</div>
+						<div class="col-xs-4">
+							<img src="/static/images/feature3@2x.png" width="50">
+							<h4>Multiple Currencies</h4>
+							<p>Purchase your account with BTC, LTC, DOGE, DRK, PPC, MAX or VTC. More coming soon.</p>
+						</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="container-fluid" id="third">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-5">
+					<h2 class="white">Server Specs</h2>
+					<p><img src="/static/images/servericon@2x.png" width="20" class="icon"> 1200 day retention</p>
+					<p><img src="/static/images/networkicon@2x.png" width="20" class="icon"> 50 connections</p>
+					<p><img src="/static/images/lockicon@2x.png" width="20" class="icon"> SSL encryption on all connections</p>
+					<p><img src="/static/images/unlimitedicon@2x.png" width="20" class="icon"> Unlimited downloads</p>
+					<p><img src="/static/images/speedicon@2x.png" width="20" class="icon"> Unlimited speeds</p>
+				</div>
+				<div class="col-xs-7">
+					<img src="/static/images/serverone.png" class="img-responsive">
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="container-fluid" id="fourth">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12">
+					<h2>Other Features</h2>
+					<div class="row">
+						<div class="col-xs-6">
+							<img src="/static/images/topoff.png" width="32">
+							<h4>Top Off Account</h4>
+							Add days to your usenet account with any of the currencies we support at anytime. You can add multiple months for a discount.
+						</div>
+						<div class="col-xs-6">
+							<img src="/static/images/qrcode2.png" width="32">
+							<h4>QR Codes</h4>
+							Our checkout page now supports qrcodes to make paying for you account from a mobile device even easier.
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-6">
+							<img src="/static/images/support.png" width="32">
+							<h4>Support</h4>
+							We're known for our quick response time through email. We'll resolve any problems quickly. <span class="black">support@bitusenet.com</span>
+						</div>
+						<div class="col-xs-6">
+							<img src="/static/images/uptime.png" width="32">
+							<h4>Uptime</h4>
+							We pride ourselves on achieving a 99% uptime. Your service won't be interrupted.
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="container-fluid" id="fifth">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12">
+					<h2 class="white">Currencies We Accept</h2>
+					<p class="white">More coming very soon. Send us an email to request others.</p>
+					<div class="row buffer">
+						<div class="col-xs-2 col-xs-offset-2">
+							<img class="img-responsive" src="/static/images/btclogolarge@2x.png">
+						</div>
+						<div class="col-xs-2">
+							<img class="img-responsive" src="/static/images/ltclogolarge@2x.png">
+						</div>
+						<div class="col-xs-2">
+							<img class="img-responsive" src="/static/images/dogelogolarge@2x.png">
+						</div>
+						<div class="col-xs-2">
+							<img class="img-responsive" src="/static/images/drklogolarge@2x.png">
+						</div>
+					</div>
+					<div class="row buffer">
+						<div class="col-xs-2 col-xs-offset-2">
+							<img class="img-responsive" src="/static/images/maxlogolarge@2x.png">
+						</div>
+						<div class="col-xs-2">
+							<img class="img-responsive" src="/static/images/ppclogolarge@2x.png">
+						</div>
+						<div class="col-xs-2">
+							<img class="img-responsive" src="/static/images/vtclogolarge@2x.png">
+						</div>
+					</div>
+					<a href="/signup" class="btn btn-primary">Check Prices</a>								
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<footer class="container-fluid">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12">
+					<ul class="list-inline">
+						<li><a href="/tos">Terms of Service</a></li>
+						<li><a href="/privacy">Privacy Policy</a></li>
+						<li><a href="/support">Support</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
+
 </body>	
 
-<script src="/static/js/jquery-1.10.2.js"></script>
-<script src="/static/js/javascript.js"></script>
+<script src="{{ static_url('js/javascript.min.js') }}"></script>
 <script>
-
-$(document).ready(function() {
-	console.log('oh yea');
-})
-
+(function() {
+	Index.init();
+})();
+$(document).scroll(function() {
+	Index.scrollEvent($(this));
+});
 </script>
 </html>

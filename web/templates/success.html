@@ -5,71 +5,228 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	{% include "modules/description.html" %}
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<link rel="stylesheet" href="{{ static_url('css/style.css') }}">
+	<link rel="stylesheet" href="{{ static_url('css/style.min.css') }}">
 	<script src="/static/js/modernizr.custom.43438.js"></script>
 	<title>Bitusenet • Usenet access for crypto currencies</title>
 </head>
-<body>
-	<section>
+<body id="success">
+
+	<section id="navbar-full">
+		<div id="navbar">
+			<nav class="navbar navbar-ct-black navbar-transparent navbar-absolute-top" role="navigation">
+				<div class="container">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="/"><img src="/static/images/logo.png" width="50"></a>
+					</div>
+
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav navbar-right">
+							<li><a href="/dashboard" class="btn btn-default">Dashboard</a></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</div>
+	</section>
+
+	<section id="first" class="container-fluid">
+		<div class="container">
+			<h1 class="white socketheader">Created</h1>
+			<p class="white opac">Your username and password will be your login to the usenet server</p>
+		</div>
+	</section>
+
+	<section id="progress" class="container-fluid">
 		<div class="container">
 			<div class="row">
-				<div class="col-xs-7">
-					<h3>Multi Month Discount</h3>
-					<table class="table table-striped">
-						<thead>
-							<tr>
-								<th></th>
-								<th>3 months</th>
-								<th>6 months</th>
-								<th>12 months</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>Savings</td>
-								<td>10% per month</td>
-								<td>15% per month</td>
-								<td>20% per month</td>
-							</tr>
-							<tr>
-								<td>Per Month</td>
-								<td><span class="3permonth">0.013</span> <span class="currency">btc</span></td>
-								<td><span class="6permonth">0.013</span> <span class="currency">btc</span></td>
-								<td><span class="12permonth">0.013</span> <span class="currency">btc</span></td>
-							</tr>
-							<tr>
-								<td>Total</td>
-								<td><span id="3monthtotal"></span> <span class="currency">btc</span></td>
-								<td><span id="6monthtotal"></span> <span class="currency">btc</span></td>
-								<td><span id="12monthtotal"></span> <span class="currency">btc</span></td>
-							</tr>
-						</tbody>
-					</table>
+				<div class="col-xs-2 col-xs-offset-2">
+					<p>Create</p>
+				</div>
+				<div class="col-xs-1">
+					<hr>
+				</div>
+				<div class="col-xs-2">
+					<p class="socketstep1 black">Send</p>
+				</div>
+				<div class="col-xs-1">
+					<hr>
+				</div>
+				<div class="col-xs-2">
+					<p class="socketstep2">Access</p>
 				</div>
 			</div>
 		</div>
 	</section>
+
 	<section>
 		<div class="container">
-			<div class="row">
-				<div class="col-xs-6">
-					<h4>{{priceobject[currency]['bitusenet']}} {{currency}} <a href="{{currency}}coin:{{address}}?amount={{priceobject[currency]['bitusenet']}}&label=bitusenet.com&message=Usenet%20access">{{address}}</a></h4>
-					<p id="socket"></p>
-					<div id="qrcode"></div>
+			<div class="row">			
+				<div class="col-lg-8 col-lg-offset-2">
+					<div class="row pricebox" id="socket">
+						<div class="col-xs-12">
+							<h4 class="sockettitle">This page will update when the coins are received</h4>
+							<p class="socketamount">Please send all coins within the next 30 minutes. If you need longer then that, <a href="/dashboard-add">check current pricing</a> from the dashboard. <p>You can also pay with <a href="/dashboard-add">different currencies.</a></p></p>
+
+						</div>
+					</div>
+					<div class="row pricebox">
+						<div class="col-xs-8 col-sm-9">
+							<h3>1 Month Account</h3>
+							<ul>
+								<li>
+									<img src="/static/images/node@2x.png" height="22"> <a href="{{longname[currency]}}coin:{{address}}?amount={{priceobject[currency]['bitusenet']['onemonth']}}&label=bitusenet.com&message=Usenet%20access">{{address}}</a>
+								</li>
+								<li>
+									<img src="/static/images/checkicon@2x.png" height="22"> {{priceobject[currency]['bitusenet']['onemonth']}} {{currency.upper()}} per month
+								</li>
+								<li>
+									<img src="/static/images/calendar@2x.png" height="22"> Active until {{ (datetime.datetime.utcnow().date() + datetime.timedelta(days=31)).strftime("%b %d, %Y") }}
+								</li>
+							</ul>
+						</div>
+						<div class="col-xs-4 col-sm-3">
+							<div class="pull-right" id="qrcodeonemonth"></div>
+							<h4 class="pull-right total"><span class="gray">Total:</span> {{priceobject[currency]['bitusenet']['onemonth']}} {{currency.upper()}}</h4>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</section>
+
+	<section>
+		<div class="container">
+			<div class="row">			
+				<div class="col-lg-8 col-lg-offset-2">
+					<div class="row pricebox">
+						<div class="col-xs-8 col-sm-9">
+							<h3>3 Month Account</h3>
+							<ul>
+								<li>
+									<img src="/static/images/node@2x.png" height="22"> <a href="{{longname[currency]}}coin:{{address}}?amount={{priceobject[currency]['bitusenet']['threemonth']}}&label=bitusenet.com&message=Usenet%20access">{{address}}</a>
+								</li>
+								<li>
+									<img src="/static/images/checkicon@2x.png" height="22"> {{priceobject[currency]['bitusenet']['threepermonth']}} {{currency.upper()}} per month <span class="thin">(10% savings)</span>
+								</li>
+								<li>
+									<img src="/static/images/calendar@2x.png" height="22"> Active until {{ (datetime.datetime.utcnow().date() + datetime.timedelta(days=91)).strftime("%b %d, %Y") }}
+								</li>
+							</ul>
+						</div>
+						<div class="col-xs-4 col-sm-3">
+							<div class="pull-right" id="qrcodethreemonth"></div>
+							<h4 class="pull-right total"><span class="gray">Total:</span> {{priceobject[currency]['bitusenet']['threemonth']}} {{currency.upper()}}</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section>
+		<div class="container">
+			<div class="row">			
+				<div class="col-lg-8 col-lg-offset-2">
+					<div class="row pricebox">
+						<div class="col-xs-8 col-sm-9">
+							<h3>6 Month Account</h3>
+							<ul>
+								<li>
+									<img src="/static/images/node@2x.png" height="22"> <a href="{{longname[currency]}}coin:{{address}}?amount={{priceobject[currency]['bitusenet']['sixmonth']}}&label=bitusenet.com&message=Usenet%20access">{{address}}</a>
+								</li>
+								<li>
+									<img src="/static/images/checkicon@2x.png" height="22"> {{priceobject[currency]['bitusenet']['sixpermonth']}} {{currency.upper()}} per month <span class="thin">(15% savings)</span>
+								</li>
+								<li>
+									<img src="/static/images/calendar@2x.png" height="22"> Active until {{ (datetime.datetime.utcnow().date() + datetime.timedelta(days=186)).strftime("%b %d, %Y") }}
+								</li>
+							</ul>
+						</div>
+						<div class="col-xs-4 col-sm-3">
+							<div class="pull-right" id="qrcodesixmonth"></div>
+							<h4 class="pull-right total"><span class="gray">Total:</span> {{priceobject[currency]['bitusenet']['sixmonth']}} {{currency.upper()}}</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section style="margin-bottom: 50px;">
+		<div class="container">
+			<div class="row">			
+				<div class="col-lg-8 col-lg-offset-2">
+					<div class="row pricebox">
+						<div class="col-xs-8 col-sm-9">
+							<h3>12 Month Account</h3>
+							<ul>
+								<li>
+									<img src="/static/images/node@2x.png" height="22"> <a href="{{longname[currency]}}coin:{{address}}?amount={{priceobject[currency]['bitusenet']['twelvemonth']}}&label=bitusenet.com&message=Usenet%20access">{{address}}</a>
+								</li>
+								<li>
+									<img src="/static/images/checkicon@2x.png" height="22"> {{priceobject[currency]['bitusenet']['twelvepermonth']}} {{currency.upper()}} per month <span class="thin">(20% savings)</span>
+								</li>
+								<li>
+									<img src="/static/images/calendar@2x.png" height="22"> Active until {{ (datetime.datetime.utcnow().date() + datetime.timedelta(days=366)).strftime("%b %d, %Y") }}
+								</li>
+							</ul>
+						</div>
+						<div class="col-xs-4 col-sm-3">
+							<div class="pull-right" id="qrcodetwelvemonth"></div>
+							<h4 class="pull-right total"><span class="gray">Total:</span> {{ priceobject[currency]['bitusenet']['twelvemonth']}} {{currency.upper()}}</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<footer>
+
+	</footer>
+
 </body>	
 
-<script src="/static/js/jquery-1.10.2.js"></script>
-<script src="/static/js/javascript.js"></script>
-<script src="/static/js/qrcode.min.js"></script>
+<script src="{{ static_url('js/javascript.min.js') }}"></script>
+<script src="{{ static_url('js/qrcode.js') }}"></script>
 <script>
 
 $(document).ready(function() {
-	var qrcode = new QRCode(document.getElementById("qrcode"), {
-	    text: "{{currency}}coin:{{address}}?amount={{priceobject[currency]['bitusenet']}}",
+	var qrcodeone = new QRCode(document.getElementById("qrcodeonemonth"), {
+	    text: "{{currency}}coin:{{address}}?amount={{priceobject[currency]['bitusenet']['onemonth']}}",
+	    width: 128,
+	    height: 128,
+	    colorDark : "#000000",
+	    colorLight : "#ffffff",
+	    correctLevel : QRCode.CorrectLevel.H
+	});
+
+	var qrcodethree = new QRCode(document.getElementById("qrcodethreemonth"), {
+	    text: "{{currency}}coin:{{address}}?amount={{priceobject[currency]['bitusenet']['threemonth']}}",
+	    width: 128,
+	    height: 128,
+	    colorDark : "#000000",
+	    colorLight : "#ffffff",
+	    correctLevel : QRCode.CorrectLevel.H
+	});
+
+	var qrcodesix = new QRCode(document.getElementById("qrcodesixmonth"), {
+	    text: "{{currency}}coin:{{address}}?amount={{priceobject[currency]['bitusenet']['sixmonth']}}",
+	    width: 128,
+	    height: 128,
+	    colorDark : "#000000",
+	    colorLight : "#ffffff",
+	    correctLevel : QRCode.CorrectLevel.H
+	});
+
+	var qrcodetwelve = new QRCode(document.getElementById("qrcodetwelvemonth"), {
+	    text: "{{currency}}coin:{{address}}?amount={{priceobject[currency]['bitusenet']['twelvemonth']}}",
 	    width: 128,
 	    height: 128,
 	    colorDark : "#000000",
@@ -78,16 +235,27 @@ $(document).ready(function() {
 	});
 
 	if (Modernizr.websockets) {
-		$("#socket").text("This page will update as soon as we receive the coins");
-		var ws = new WebSocket("ws://ec2-54-221-32-214.compute-1.amazonaws.com/socket?address={{address}}");
+		$("#socket").show();
+		var ws = new WebSocket("ws://www.bitusenet.com/socket?address={{address}}");
 		ws.onopen = function() {
 			ws.send("{{address}}");
 		};
 		ws.onmessage = function(e) {
-			var data = e.data;
-			console.log(data);
-			$("#socket").text(data['amount']);
+			var data = $.parseJSON(e.data);
+			if (data['active']) {
+				$(".socketheader").text("Active");
+				$(".sockettitle").text("Thank you. " + data['amount'] + " {{currency.upper()}} received");
+				$(".socketamount").html("Your account on the usenet server is active. <a href='/dashboard'>The dashboard</a> will give you the server information.");
+				$(".socketstep1").removeClass('black');
+				$(".socketstep2").addClass('black');
+			} else {
+				$(".sockettitle").text("Thank you. " + data['amount'] + " {{currency.upper()}} received");
+				$(".socketamount").html("More coins are needed to activate your account. <a href='/dashboard-add'>The dashboard</a> will tell you the amount left.");
+			}
 		};
+	} else {
+		$(".sockettitle").text("Your account will activate as soon as we receive the coins");
+		$(".socketamount").html("<a href='/dashboard'>The dashboard</a> will give you the server login information.");
 	}
 })
 

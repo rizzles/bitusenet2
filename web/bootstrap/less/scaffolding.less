@@ -22,11 +22,15 @@
 html {
   font-size: 62.5%;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
+  height: 100%;
 }
 
 body {
+  height: 100%;  
+  @import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400, 700);
   font-family: @font-family-base;
   font-size: @font-size-base;
+  font-weight: 400;
   line-height: @line-height-base;
   color: @text-color;
   background-color: @body-bg;
@@ -52,7 +56,7 @@ a {
   &:hover,
   &:focus {
     color: @link-hover-color;
-    text-decoration: underline;
+    text-decoration: none;
   }
 
   &:focus {
@@ -74,7 +78,7 @@ figure {
 // Images
 
 img {
-  vertical-align: middle;
+  vertical-align: sub;
 }
 
 // Responsive images (ensure images don't scale beyond their parents)
@@ -107,14 +111,19 @@ img {
   border-radius: 50%; // set radius in percents
 }
 
-
+ul {
+  list-style-type: none;
+  line-height: 2.2em;
+  padding: 0px;
+}
 // Horizontal rules
 
 hr {
-  margin-top:    @line-height-computed;
+  margin: 0px;
+  margin-top: 48px;
   margin-bottom: @line-height-computed;
   border: 0;
-  border-top: 1px solid @hr-border;
+  border-top: 2px solid @hr-border;
 }
 
 
@@ -148,3 +157,4 @@ hr {
     clip: auto;
   }
 }
+

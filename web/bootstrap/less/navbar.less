@@ -12,7 +12,8 @@
   position: relative;
   min-height: @navbar-height; // Ensure a navbar always shows (e.g., without a .navbar-brand in collapsed mode)
   margin-bottom: @navbar-margin-bottom;
-  border: 1px solid transparent;
+  margin-top: @navbar-margin-bottom;
+  //border: 1px solid transparent;
 
   // Prevent floats from breaking the navbar
   &:extend(.clearfix all);
@@ -134,6 +135,11 @@
   }
 }
 
+.navbar-absolute {
+  position: absolute;
+  top: 0;
+}
+
 // Fix the top/bottom navbars when screen real estate supports it
 .navbar-fixed-top,
 .navbar-fixed-bottom {
@@ -162,7 +168,7 @@
 
 .navbar-brand {
   float: left;
-  padding: @navbar-padding-vertical @navbar-padding-horizontal;
+  //padding: @navbar-padding-vertical @navbar-padding-horizontal;
   font-size: @font-size-large;
   line-height: @line-height-computed;
   height: @navbar-height;
@@ -175,7 +181,7 @@
   @media (min-width: @grid-float-breakpoint) {
     .navbar > .container &,
     .navbar > .container-fluid & {
-      margin-left: -@navbar-padding-horizontal;
+      //margin-left: -@navbar-padding-horizontal;
     }
   }
 }
@@ -226,7 +232,7 @@
 // the nav the full height of the horizontal nav (above 768px).
 
 .navbar-nav {
-  margin: (@navbar-padding-vertical / 2) -@navbar-padding-horizontal;
+  //margin: (@navbar-padding-vertical / 2) -@navbar-padding-horizontal;
 
   > li > a {
     padding-top:    10px;
@@ -387,8 +393,8 @@
 
 // Default navbar
 .navbar-default {
-  background-color: @navbar-default-bg;
-  border-color: @navbar-default-border;
+  //background-color: @navbar-default-bg;
+  //border-color: @navbar-default-border;
 
   .navbar-brand {
     color: @navbar-default-brand-color;

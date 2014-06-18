@@ -13,10 +13,20 @@ th {
 
 
 // Baseline styles
-
 .table {
   width: 100%;
-  margin-bottom: @line-height-computed;
+  border-radius: 4px;
+  label {
+    font-size: @font-size-base;
+    color: @brand-fourth;
+    font-weight: 700;
+    text-transform: none;
+    img {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+  }
   // Cells
   > thead,
   > tbody,
@@ -27,7 +37,6 @@ th {
         padding: @table-cell-padding;
         line-height: @line-height-base;
         vertical-align: top;
-        border-top: 1px solid @table-border-color;
       }
     }
   }
@@ -43,7 +52,10 @@ th {
     > tr:first-child {
       > th,
       > td {
-        border-top: 0;
+        border: 0;
+        font-size: 15px;
+        text-transform: uppercase;
+        color: @gray-darker;
       }
     }
   }
@@ -57,7 +69,6 @@ th {
     background-color: @body-bg;
   }
 }
-
 
 // Condensed table w/ half padding
 
@@ -91,12 +102,10 @@ th {
       }
     }
   }
-  > thead > tr {
-    > th,
-    > td {
-      border-bottom-width: 2px;
-    }
-  }
+}
+
+.table-outer-bordered {
+  border: 1px solid @table-border-color;
 }
 
 

@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	{% include "modules/description.html" %}
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="{{ static_url('css/style.min.css') }}">
+	<title>Bitusenet • Usenet access for crypto currencies</title>
+</head>
+<body id="dashboard">
+	<section style="height:100%;">
+		<div class="container-fluid" style="height:100%;">
+			<div class="row" style="min-height:100%;">
+				<div class="col-xs-12 col-sm-3 col-lg-3 menu">
+					<div class="row">
+						<div class="col-xs-6 col-sm-12">
+							<a href="/"><img src="/static/images/logo.png" width="80"></a>
+							<p class="white center">{{current_user['username']}}</p>
+						</div>
+						<div class="col-xs-6 col-sm-12">
+
+							<ul class="col-lg-offset-5">
+								<li><a href="/dashboard" class="active">DASHBOARD</a></li>
+								<li><a href="/dashboard-add">ADD TIME</a></li>
+								<li><a href="/dashboard-transactions">TRANSACTIONS</a></li>
+								<li><a href="/logout">LOGOUT</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-9 col-lg-8 dashbody" style="min-height:100%;">
+					<h3>Dashboard</h3>
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="frame">
+								<div class="row">
+									{% if current_user['active'] %}									
+									<div class="col-xs-6 col-sm-8 col-md-6 col-lg-4">
+										<ul>
+											<li><h4 class="nomargin">Account Status</h4></li>
+											<li><p>Active</p></li>
+											<li><h4>Started</h4></li>
+											<li><p>{{current_user['created'].strftime("%b %d, %Y")}}</p></li>
+											<li><h4>Expires</h4></li>
+											<li><p class="nomargin">{{current_user['billing'].strftime("%b %d, %Y")}}</p></li>
+										</ul>
+									</div>
+									<div class="col-xs-6 col-sm-4 col-md-6 col-lg-6">
+										<div class="chart" data-percent="{{((current_user['billing'] - datetime.datetime.utcnow()).days *100/ (current_user['billing'] - current_user['created']).days )}}">
+											<p class="nomargin" style="margin-bottom:5px;">{{(current_user['billing'] - datetime.datetime.utcnow()).days}} days left</p>
+										</div>
+										<a href="/dashboard-add">Add more time</a>
+									</div>
+									{% else %}
+									<div class="col-xs-12">
+										<h4 class="nomargin">Your account is currently not active</h4>
+										<p style="margin-top: 12px;">You will not be able to login to the usenet server.</p>
+										<a href="dashboard-add">Add time</a> to your account to be able to login.
+									</div>
+									{% end %}
+								</div>
+							</div>
+
+							<div class="frame">
+								<ul>
+									<li><h4 class="nomargin">Server Address</h4></li>
+									<li>news.bitusenet.com</li>
+									<li><h4>Ports</h4></li>
+									<li>53, 80, 119, 443, 8080, 9000</li>
+									<li><h4>SSL Port</h4></li>
+									<li>563</li>
+									<li><h4>Connections</h4></li>
+									<li>50</li>
+									<li><h4>Retention</h4></li>
+									<li>1200 days</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>	
+
+<script src="{{ static_url('js/javascript.min.js') }}"></script>
+<script src="/static/js/jquery.easypiechart.min.js"></script>
+<script>
+
+$(document).ready(function() {
+	$('.chart').easyPieChart({
+		barColor: '#ED6100',
+		scaleColor: false,
+		lineWidth: 14,
+		size: 100,
+		lineCap: 'square',
+		trackColor: '#E3E7E9'
+	});
+})
+
+</script>
+</html>
