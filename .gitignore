@@ -5,4 +5,5 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
-__init__.pyc
+*.pyc
+*.sketch
