@@ -2663,7 +2663,7 @@ fieldset[disabled] .btn {
   background-color: #2d8cdd;
   background-image: -webkit-linear-gradient(270deg, #4398e1, #227fcf 100%);
   background-image:      -o-linear-gradient(270deg, #4398e1, #227fcf 100%);
-  background-image:         linear-gradient(-180deg, #4398e1, #227fcf 100%);
+  background-image:         linear-gradient(-179.99999999deg, #4398e1, #227fcf 100%);
   border-color: #2d8cdd;
   outline: none;
   -webkit-box-shadow: 0 0 3px 0 rgba(0, 0, 0, .34);
@@ -2679,7 +2679,7 @@ fieldset[disabled] .btn {
   background-color: #3a93df;
   background-image: -webkit-linear-gradient(270deg, #509fe3, #2d8cdd 100%);
   background-image:      -o-linear-gradient(270deg, #509fe3, #2d8cdd 100%);
-  background-image:         linear-gradient(-179.99999999deg, #509fe3, #2d8cdd 100%);
+  background-image:         linear-gradient(-180deg, #509fe3, #2d8cdd 100%);
   outline: none;
 }
 .btn-primary:active,
