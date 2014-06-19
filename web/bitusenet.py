@@ -175,14 +175,12 @@ class SignupHandler(BaseHandler):
             self.render('signup.html', errors="usernameexists", aff=aff, uid=uid, price=tornado.escape.json_encode(price), priceobject=price)
             return
 
-        """
         # Check if username exists in auth db.
         exists = authdb.get("SELECT * FROM auth.logins WHERE username = %s LIMIT 1", username)
         if exists:
             logging.error('username exists in auth db.')
             self.render('signup.html', errors="usernameexists", aff=aff, uid=uid, price=tornado.escape.json_encode(price), priceobject=price)
             return
-        """
 
         logging.info('making request for new addres for %s'%currency)
         client = tornado.httpclient.AsyncHTTPClient()
