@@ -12867,17 +12867,19 @@ SignUp = {
 			}
 
 			if (uname.indexOf(' ') >= 0) {
+				e.preventDefault();
 				$("#uname-label").text("Username can not contain spaces");
 				$("#uname-group").addClass('shake').addClass('has-error');
 				return;
 			}
 
 			if (password.indexOf(' ') >= 0) {
+				e.preventDefault();
 				$("#password-label").text("Password can not contain spaces");
 				$("#password-group").addClass('shake').addClass('has-error');
 				return;
 			}
-		})
+		});
 
 		$('#uname-group').on('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
 			$("#uname-group").removeClass('shake');
