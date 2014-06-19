@@ -122,6 +122,18 @@ SignUp = {
 				$("#password-group").addClass("shake").addClass('has-error');
 				return;
 			}
+
+			if (uname.indexOf(' ') >= 0) {
+				$("#uname-label").text("Username can not contain spaces");
+				$("#uname-group").addClass('shake').addClass('has-error');
+				return;
+			}
+
+			if (password.indexOf(' ') >= 0) {
+				$("#password-label").text("Password can not contain spaces");
+				$("#password-group").addClass('shake').addClass('has-error');
+				return;
+			}
 		})
 
 		$('#uname-group').on('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
