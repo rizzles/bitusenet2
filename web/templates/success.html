@@ -71,7 +71,7 @@
 					<div class="row pricebox" id="socket">
 						<div class="col-xs-12">
 							<h4 class="sockettitle">This page will update when the coins are received</h4>
-							<p class="socketamount">Please send all coins within the next 30 minutes. If you need longer then that, <a href="/dashboard-add">check current pricing</a> from the dashboard. <p>You can also pay with <a href="/dashboard-add">different currencies.</a></p></p>
+							<p class="socketamount">Please send all coins within the next 30 minutes. If you need longer then that, <a href="/dashboard-add">check current pricing</a> from the dashboard. <p class="socketpay">You can also pay with <a href="/dashboard-add">different currencies.</a></p></p>
 
 						</div>
 					</div>
@@ -246,6 +246,7 @@ $(document).ready(function() {
 				$(".socketheader").text("Active");
 				$(".sockettitle").text("Thank you. " + data['amount'] + " {{currency.upper()}} received");
 				$(".socketamount").html("Your account on the usenet server is active. <a href='/dashboard'>The dashboard</a> will give you the server information.");
+				$(".socketpay").html("");
 				$(".socketstep1").removeClass('black');
 				$(".socketstep2").addClass('black');
 			} else {
