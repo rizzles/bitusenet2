@@ -28,6 +28,11 @@ class Application(tornado.web.Application):
             (r"/login", LoginHandler),
             (r"/logout", LogoutHandler),
             (r"/signup", SignupHandler),
+            (r"/privacy", PrivacyHandler),
+            (r"/tos", TosHandler),
+            (r"/dmca", DmcaHandler),
+            (r"/support", SupportHandler),
+
             (r"/dashboard", DashboardHandler),
             (r"/dashboard-add", DashboardAddHandler),
             (r"/dashboard-transactions", DashboardTransactionsHandler),
@@ -47,7 +52,7 @@ class Application(tornado.web.Application):
             site_name='design',
             xsrf_cookies=False,
             autoescape=None,
-            debug=True,
+            debug=False,
             gzip=True
         )
 
@@ -179,6 +184,7 @@ class SignupHandler(BaseHandler):
         exists = authdb.get("SELECT * FROM auth.logins WHERE username = %s LIMIT 1", username)
         if exists:
             logging.error('username exists in auth db.')
+            price = self.get_currencies()
             self.render('signup.html', errors="usernameexists", aff=aff, uid=uid, price=tornado.escape.json_encode(price), priceobject=price)
             return
 
@@ -288,6 +294,26 @@ class LogoutHandler(BaseHandler):
         self.clear_cookie('bitusent')
         self.clear_all_cookies()
         self.redirect('/')
+
+
+class PrivacyHandler(BaseHandler):
+    def get(self):
+        self.render('privacy.html')
+
+
+class TosHandler(BaseHandler):
+    def get(self):
+        self.render('tos.html')
+
+
+class DmcaHandler(BaseHandler):
+    def get(self):
+        self.render('dmca.html')
+
+
+class SupportHandler(BaseHandler):
+    def get(self):
+        self.render('support.html')
 
 
 class JavascriptHandler(BaseHandler):

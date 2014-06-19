@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	{% include "modules/description.html" %}
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="{{ static_url('css/style.min.css') }}">
+	<title>Bitusenet • Usenet access for crypto currencies</title>
+</head>
+<body id="signup">
+
+	<section id="navbar-full">
+		<div id="navbar">
+			<nav class="navbar navbar-transparent navbar-absolute-top" role="navigation">
+				<div class="container">
+					<div class="navbar-header">
+						<a class="navbar-brand" href="/"><img src="/static/images/logo.png" width="50"></a>		
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+					</div>
+					<div class="collapse navbar-collapse" id="navbar-collapse-1">
+						<ul class="nav navbar-nav navbar-right">
+							{% if current_user %}
+								<li><a href="/dashboard" class="btn btn-default navbar-btn">Dashboard</a></li>
+							{% else %}
+								<li><a href="/login" class="btn btn-default">Log In</a></li>
+							{% end %}								
+						</ul>					
+					</div>
+				</div>
+			</nav>
+		</div>
+	</section>
+
+	<section id="first" class="container-fluid">
+		<div class="container">
+			<h1 class="white">Sign Up</h1>
+			<p class="white opac">Have your account activated and ready to use in minutes</p>
+		</div>
+	</section>
+
+	<section id="progress" class="container-fluid">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-2 col-xs-offset-2">
+					<p class="black">Create</p>
+				</div>
+				<div class="col-xs-1">
+					<hr>
+				</div>
+				<div class="col-xs-2">
+					<p>Send</p>
+				</div>
+				<div class="col-xs-1">
+					<hr>
+				</div>
+				<div class="col-xs-2">
+					<p>Access</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<form action="/signup" method="POST" id="signup-form">
+		<section>
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-lg-8 col-lg-offset-2">
+						<div class="row pricebox">
+							<div class="col-xs-12">
+								<h3>Choose Currency</h3>
+								<table class="table table-striped">
+									<tbody>
+										<tr>
+											<td>
+												<label>
+													<input checked type="radio" value="btc" name="currency"> <img src="/static/images/btclogosmall@2x.png" height="32"> Bitcoin
+												</label>
+											</td>
+											<td class="text-right">{{priceobject['btc']['bitusenet']['onemonth']}} BTC</td>
+										</tr>
+										<tr>
+											<td>
+												<label>
+													<input type="radio" value="ltc" name="currency"> <img src="/static/images/ltclogosmall@2x.png" height="32"> Litecoin
+												</label>
+											</td>
+											<td class="text-right">{{priceobject['ltc']['bitusenet']['onemonth']}} LTC</td>
+										</tr>
+										<tr>
+											<td>
+												<label>
+													<input type="radio" value="doge" name="currency"> <img src="/static/images/dogelogosmall@2x.png" height="32"> Dogecoin
+												</label>
+											</td>
+											<td class="text-right">{{priceobject['doge']['bitusenet']['onemonth']}} DOGE</td>
+										</tr>
+										<tr>
+											<td>
+												<label>
+													<input 	type="radio" value="ppc" name="currency"> <img src="/static/images/ppclogosmall@2x.png" height="32"> Peercoin
+												</label>
+											</td>
+											<td class="text-right">{{priceobject['ppc']['bitusenet']['onemonth']}} PPC</td>
+										</tr>
+										<tr>
+											<td>
+												<label>
+													<input 	type="radio" value="max" name="currency"> <img src="/static/images/maxlogosmall@2x.png" height="32"> Maxcoin
+												</label>
+											</td>
+											<td class="text-right">{{priceobject['max']['bitusenet']['onemonth']}} MAX</td>
+										</tr>	
+										<tr>
+											<td>
+												<label>
+													<input 	type="radio" value="vtc" name="currency"> <img src="/static/images/vtclogosmall@2x.png" height="32"> Vertcoin
+												</label>
+											</td>
+											<td class="text-right">{{priceobject['vtc']['bitusenet']['onemonth']}} VTC</td>
+										</tr>
+										<tr>
+											<td>
+												<label>
+													<input 	type="radio" value="drk" name="currency"> <img src="/static/images/drklogosmall@2x.png" height="32"> Darkcoin
+												</label>
+											</td>
+											<td class="text-right">{{priceobject['drk']['bitusenet']['onemonth']}} DRK</td>
+										</tr>					
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<div class="row pricebox">
+							<div class="col-xs-12">
+								<h3>Multi Month Discount</h3>
+								<div class="table-responsive">
+									<table class="table table-striped">
+										<thead>
+											<tr>
+												<th><span class="currency">btc</span></th>
+												<th class="text-center">1 MONTH</th>
+												<th class="text-center">3 MONTHS</th>
+												<th class="text-center">6 MONTHS</th>
+												<th class="text-center">12 MONTHS</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>Savings</td>
+												<td></td>
+												<td class="text-center">10%</td>
+												<td class="text-center">15%</td>
+												<td class="text-center">20%</td>
+											</tr>
+											<tr>
+												<td>Per Month</td>
+												<td class="text-center"><span id="permonth">{{priceobject['btc']['bitusenet']['onemonth']}}</span></td>
+												<td class="text-center"><span id="3permonth">{{ priceobject['btc']['bitusenet']['threepermonth'] }}</span> </td>
+												<td class="text-center"><span id="6permonth">{{ priceobject['btc']['bitusenet']['sixpermonth'] }}</span> </td>
+												<td class="text-center"><span id="12permonth">{{ priceobject['btc']['bitusenet']['twelvepermonth'] }}</span></td>
+											</tr>
+											<tr>
+												<td>Total</td>
+												<td class="text-center"><b><span id="month">{{ priceobject['btc']['bitusenet']['onemonth'] }}</span></b></td>
+												<td class="text-center"><b><span id="3month">{{ priceobject['btc']['bitusenet']['threemonth'] }}</span></b></td>
+												<td class="text-center"><b><span id="6month">{{ priceobject['btc']['bitusenet']['sixmonth'] }}</span></b></td>
+												<td class="text-center"><b><span id="12month">{{ priceobject['btc']['bitusenet']['twelvemonth'] }}</span></b></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+						<div class="row pricebox">
+							<div class="col-xs-12">
+								<h3>Server Login</h3>
+								{% if errors == 'usernameexists' %}
+								<div class="form-group has-error" id="uname-group">
+									<label for="uname" class="control-label" id="uname-label">Username already exists. <a href="/login">Login?</a></label>
+									<input type="text" name="uname" id="uname" class="form-control" tabindex="1" autofocus>
+								</div>
+								{% else %}
+								<div class="form-group" id="uname-group">
+									<label for="uname" class="control-label" id="uname-label">Username</label>
+									<input type="text" name="uname" id="uname" class="form-control" tabindex="1">
+								</div>
+								{% end %}
+								<div class="form-group" id="password-group">
+									<label for="password" class="control-label" id="password-label">Password</label>
+									<input type="password" name="password" id="password" class="form-control" tabindex="2">
+								</div>
+								<div class="form-group" id="email-group">
+									<label for="password" class="control-label" id="email-label">Email (Optional)</label>
+									<input type="text" name="email" id="email" class="form-control" tabindex="3">
+									<small>Providing an email address will allow you to reset your password. We'll never spam you.</small>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-12 col-lg-8 col-lg-offset-2" style="margin: 50px 0">
+								<button type="submit" class="btn btn-primary" id="submit-btn">Submit</button>			
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</form>	
+</body>	
+
+<script src="{{ static_url('js/javascript.min.js') }}"></script>
+<script>
+
+$(document).ready(function() {
+	SignUp.init({{price}});
+});
+
+</script>
+</html>
