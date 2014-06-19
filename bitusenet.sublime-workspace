@@ -4,20 +4,48 @@
 		"selected_items":
 		[
 			[
+				"account",
+				"account"
+			],
+			[
+				"get_cu",
+				"get_current_user"
+			],
+			[
+				"get_curr",
+				"get_currency"
+			],
+			[
+				"te",
+				"text-align"
+			],
+			[
+				"le",
+				"letter-spacing"
+			],
+			[
+				"tex",
+				"text-align"
+			],
+			[
+				"text-",
+				"text-transform"
+			],
+			[
+				"brand-pri",
+				"brand-primary1"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
 				"gray-dark",
 				"gray-darker"
 			],
 			[
 				"gray-dar",
 				"gray-darker"
-			],
-			[
-				"back",
-				"background"
-			],
-			[
-				"te",
-				"text-transform"
 			],
 			[
 				"three",
@@ -396,10 +424,6 @@
 				"customerdict"
 			],
 			[
-				"tex",
-				"text-transform"
-			],
-			[
 				"news",
 				"newpassword2"
 			],
@@ -490,56 +514,24 @@
 			[
 				"ret",
 				"retrieving"
-			],
-			[
-				"drop",
-				"dropdown-toggle"
-			],
-			[
-				"bord",
-				"border-radius"
-			],
-			[
-				"backgr",
-				"background-color"
-			],
-			[
-				"j",
-				"json_encode"
-			],
-			[
-				"su",
-				"submit"
-			],
-			[
-				"arg",
-				"arg"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "web/bitusenet.py",
-			"settings":
-			{
-				"buffer_size": 7137,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "web/templates/index.html",
-			"settings":
-			{
-				"buffer_size": 811,
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "Gruntfile.js",
 			"settings":
 			{
-				"buffer_size": 6573,
+				"buffer_size": 7117,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/m/Dropbox/projects/bitusenet/templates/signup.html",
+			"settings":
+			{
+				"buffer_size": 4527,
 				"line_ending": "Unix"
 			}
 		},
@@ -547,42 +539,15 @@
 			"file": "web/bootstrap/js/scaffolding.js",
 			"settings":
 			{
-				"buffer_size": 61,
+				"buffer_size": 3914,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "web/bootstrap/less/variables.less",
-			"settings":
-			{
-				"buffer_size": 38716,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "web/bootstrap/less/scaffolding.less",
-			"settings":
-			{
-				"buffer_size": 2644,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "",
 			"file": "web/bootstrap/less/site.less",
-			"file_size": -1,
-			"file_write_time": -1,
 			"settings":
 			{
-				"buffer_size": 0,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "web/bootstrap/less/navbar.less",
-			"settings":
-			{
-				"buffer_size": 14663,
+				"buffer_size": 13967,
 				"line_ending": "Unix"
 			}
 		}
@@ -631,27 +596,62 @@
 	},
 	"file_history":
 	[
-		"/Users/m/Documents/bitusenet2/Gruntfile.js",
-		"/Users/m/Documents/bitusenet2/node_modules/grunt-sketch/tasks/sketch.js",
-		"/Users/m/.Trash/Gruntfile.bkup",
-		"/Users/m/Documents/bitusenet2/web/bootstrap/less/type.less",
-		"/Users/m/Documents/bitusenet2/web/templates/brand.html",
-		"/Users/m/Documents/bitusenet2/web/templates/forms.html",
+		"/Users/m/Documents/bitusenet2/web/templates/success.html",
 		"/Users/m/Documents/bitusenet2/web/templates/login.html",
+		"/Users/m/Dropbox/projects/bitusenet/variables/__init__.py",
+		"/Users/m/Dropbox/projects/bitusenet/bitusenet.py",
+		"/Users/m/Documents/bitusenet2/web/bitusenet.py",
+		"/Users/m/Documents/bitusenet2/web/variables/__init__.py",
+		"/Users/m/Documents/bitusenet2/web/templates/dashboardtransactions.html",
+		"/Users/m/Documents/bitusenet2/web/templates/dashboardadd.html",
+		"/Users/m/Documents/bitusenet2/web/templates/dashboard.html",
+		"/Users/m/Documents/bitusenet2/web/templates/index.html",
+		"/Users/m/Documents/bitusenet2/web/templates/signup.html",
+		"/Users/m/Documents/bitusenet2/web/bootstrap/less/scaffolding.less",
+		"/Users/m/Documents/bitusenet2/web/bootstrap/less/variables.less",
+		"/Users/m/Documents/bitusenet2/web/bootstrap/less/bootstrap.less",
+		"/Users/m/Documents/bitusenet2/web/bootstrap/less/navbar.less",
+		"/Users/m/Documents/bitusenet2/web/bootstrap/less/buttons.less",
+		"/Users/m/Documents/bitusenet2/web/bootstrap/less/forms.less",
+		"/Users/m/Documents/bitusenet2/web/bootstrap/less/mixins/buttons.less",
+		"/Users/m/Documents/bitusenet2/web/bootstrap/less/navs.less",
+		"/Users/m/Documents/bitusenet2/web/bootstrap/less/normalize.less",
+		"/Users/m/Documents/bitusenet2/web/bootstrap/less/type.less",
+		"/Users/m/Documents/bitusenet2/web/bootstrap/less/site.less",
+		"/Users/m/Dropbox/projects/revamaps/web/revamaps.py",
+		"/Users/m/Documents/bitusenet2 copy/web/templates/dashboard.html",
+		"/Users/m/Documents/bitusenet2 copy/web/bootstrap/less/navbar.less",
+		"/Users/m/Documents/bitusenet2 copy/web/bitusenet.py",
+		"/Users/m/Documents/bitusenet2/web/templates/javascript2.html",
+		"/Users/m/Documents/bitusenet2/Gruntfile.js",
+		"/Users/m/Documents/bitusenet2/web/bootstrap/less/tables.less",
+		"/Users/m/Downloads/cross-reference-table/css/style.css",
+		"/Users/m/Documents/bitusenet2/web/bootstrap/less/mixins/table-row.less",
+		"/Users/m/Documents/bitusenet2/web/bootstrap/less/mixins/labels.less",
+		"/Users/m/Documents/bitusenet2/web/bootstrap/less/labels.less",
+		"/Users/m/Downloads/cross-reference-table/js/main.js",
+		"/Users/m/Downloads/x_GSDK_production/navbar-transparent.html",
+		"/Users/m/Downloads/Flat-UI-master/components.html",
+		"/Users/m/Documents/bitusenet2/web/templates/brand.html",
+		"/Users/m/Downloads/Flat-UI-master/css/flat-ui.css",
+		"/Users/m/Downloads/Flat-UI-master/less/flat-ui.less",
+		"/Users/m/Downloads/x_GSDK_production/components.html",
+		"/Users/m/Downloads/x_GSDK_production/assets/css/gsdk-base.css",
+		"/Users/m/Downloads/x_GSDK_production/assets/css/gsdk-checkbox-radio-switch.css",
+		"/Users/m/Downloads/x_GSDK_production/bootstrap3/css/font-awesome.css",
+		"/Users/m/Downloads/x_GSDK_production/assets/js/get-shit-done.js",
+		"/Users/m/Downloads/x_GSDK_production/assets/css/get-shit-done.css",
+		"/Users/m/Downloads/x_GSDK_production/assets/js/gsdk-radio.js",
+		"/Users/m/Downloads/x_GSDK_production/assets/js/custom.js",
+		"/Users/m/Downloads/x_GSDK_production/assets/css/demo.css",
+		"/Users/m/Documents/bitusenet2/web/bootstrap/less/mixins/forms.less",
+		"/Users/m/Documents/bitusenet2/node_modules/grunt-sketch/tasks/sketch.js",
+		"/Users/m/Documents/bitusenet2/node_modules/grunt-sketch/Gruntfile.js",
+		"/Users/m/.Trash/Gruntfile.bkup",
+		"/Users/m/Documents/bitusenet2/web/templates/forms.html",
 		"/Users/m/Documents/bitusenet2/web/templates/javascript.html",
 		"/Users/m/Documents/bitusenet2/web/templates/type.html",
-		"/Users/m/Documents/bitusenet2/web/templates/success.html",
-		"/Users/m/Documents/bitusenet2/web/templates/signup.html",
-		"/Users/m/Documents/bitusenet2/web/templates/index.html",
-		"/Users/m/Documents/bitusenet2/web/bootstrap/less/bootstrap.less",
-		"/Users/m/Documents/bitusenet2/web/bootstrap/less/buttons.less",
-		"/Users/m/Documents/bitusenet2/web/bootstrap/less/mixins/buttons.less",
-		"/Users/m/Documents/bitusenet2/web/bootstrap/less/forms.less",
-		"/Users/m/Documents/bitusenet2/web/bootstrap/less/mixins/forms.less",
-		"/Users/m/Documents/bitusenet2/web/bootstrap/less/scaffolding.less",
 		"/Users/m/Documents/bitusenet2/web/bootstrap/less/mixins.less",
-		"/Users/m/Documents/bitusenet2/web/variables/__init__.py",
-		"/Users/m/Dropbox/projects/bitusenet/bitusenet.py",
 		"/Users/m/Documents/bitusenet2/web/templates/modules/description.html",
 		"/Users/m/Dropbox/projects/bitusenet/templates/signup.html",
 		"/Users/m/Dropbox/projects/revamaps/web/templates/getstarted.html",
@@ -723,42 +723,7 @@
 		"/Users/m/Documents/maps/templates/analytics.html",
 		"/Users/m/Documents/maps/templates/modules/analytics.html",
 		"/Users/m/Documents/maps/templates/upgradestep1.html",
-		"/Users/m/Documents/maps/templates/modules/dashfooter.html",
-		"/Users/m/Documents/maps/templates/modules/dashupgrademenu.html",
-		"/Users/m/Documents/maps/templates/dashboard.html",
-		"/Users/m/Documents/maps/templates/test.html",
-		"/Users/m/Documents/maps/templates/modules/infowindow.html",
-		"/Users/m/Documents/maps/templates/infowindow.html",
-		"/Users/m/Documents/maps/templates/getstarted.html",
-		"/Users/m/Documents/karmacode/static/css/style.css",
-		"/Users/m/Documents/karmacode/templates/salesrepagreement.html",
-		"/Users/m/Documents/karmacode/templates/jointeam.html",
-		"/Users/m/Documents/karmacode/templates/pricing.html",
-		"/Users/m/Documents/karmacode/templates/modules/managerlocated.html",
-		"/Users/m/Documents/karmacode/templates/modules/pricefeatures.html",
-		"/Users/m/Documents/karmacode/templates/goodkarma.html",
-		"/Users/m/Documents/tug/templates/animation.html",
-		"/Users/m/Documents/tug/tugfree.py",
-		"/Users/m/Documents/tug/static/css/style.css",
-		"/Users/m/Documents/karmacode/static/css/bootstrap.css",
-		"/Users/m/Documents/karmacode/templates/modules/footer.html",
-		"/Users/m/Documents/karmacode/templates/index.html",
-		"/Users/m/Documents/karmacode/templates/modules/navloggedout.html",
-		"/Users/m/Documents/karmacode/templates/modules/navloggedin.html",
-		"/Users/m/Documents/karmacode/templates/modules/nav.html",
-		"/Users/m/Documents/karmacode/templates/modules/nosticknav.html",
-		"/Users/m/Documents/karmacode/templates/login.html",
-		"/Users/m/Documents/maps/templates/modules/nav.html",
-		"/Users/m/Documents/karmacode/templates/modules/head.html",
-		"/Users/m/Documents/karmacode/templates/features.html",
-		"/Users/m/Documents/karmacode/templates/dashboardsalesrep.html",
-		"/Users/m/Documents/tug/templates/index.html",
-		"/Users/m/Documents/karmacode/templates/tos.html",
-		"/Users/m/Documents/tug/scaffolding.py",
-		"/Users/m/Documents/maps/templates/modules/newbusinessmodal.html",
-		"/Users/m/Documents/maps/templates/finalizestep1.html",
-		"/Users/m/Documents/maps/templates/finalize.html",
-		"/Users/m/Documents/maps/templates/verify.html"
+		"/Users/m/Documents/maps/templates/modules/dashfooter.html"
 	],
 	"find":
 	{
@@ -776,134 +741,134 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"cwd",
-			"getso",
-			"messa",
-			"getso",
-			"bin",
-			"sketcht",
-			"Files",
-			"grunt.",
-			"isst",
-			"height",
-			"-brand",
-			"400",
-			"btn-",
-			"label",
-			"please in",
-			"-prim",
-			"bord",
-			"-radius",
-			"button-va",
-			"-prima",
-			"weight",
-			"font-fam",
-			"price",
-			"charge",
-			"selectc",
-			"currenc",
-			"change",
-			"radio",
-			"formsh",
-			"forms",
-			".bitus",
-			"set",
-			"price",
-			"loginh",
-			"has",
-			"hase",
-			"db",
-			"price",
-			"mongop",
-			"signuph",
-			"mongod",
-			"style=",
-			"cover",
-			"top",
-			"returnV",
-			".btn",
-			"btn",
-			"adminsalesto",
-			"specials(",
-			"print",
-			"upgradest",
-			"dropdo",
-			"active",
-			"finderaddressh",
-			"other",
-			"move",
-			"slide",
-			"opacit",
-			"displa",
-			"reward",
-			"other",
+			"priceo",
+			"authdb",
+			"socketpa",
+			"socektp",
+			"async",
+			"get_currenci",
+			"get_curr",
+			"httpcli",
 			"month",
-			"adminsalesu",
-			"send_owner_about_sign",
-			"aww",
-			"managersalesrepsh",
-			"activated=",
-			"activated",
-			"manageracti",
-			"changeadd",
-			"deac",
-			"deact",
-			"tabinde",
-			"changecityh",
-			"change_cit",
+			"day",
+			"navbar-btn",
+			"nabar-b",
+			"navbar-na",
+			"-static-t",
+			"-static",
+			"-fixed-t",
+			"-brand",
+			"icon-b",
+			"-transpa",
+			"navbar-br",
+			"grid-",
+			"float",
+			"-righ",
+			"block",
+			"display",
+			"displa",
+			"navbar-ri",
+			"-right",
+			"impo",
+			"-right",
+			"float",
+			"float:",
+			"btn",
+			"indexha",
+			"price",
+			"suppor",
+			"supper",
+			"login",
+			"signup",
+			"socket",
+			"add ti",
+			"add t",
+			"loginha",
+			"loginhan",
 			"active",
-			"owner",
-			"tabinde",
-			"City",
-			"change_add",
-			"#state",
-			"#address",
-			"State",
-			"changeaddressh",
-			"active_ca",
-			"salesrepsi",
-			"btn-grou",
-			".active",
-			"darkg",
-			"grey",
-			".btn",
-			"address=",
-			"chooseh",
-			"upgradest",
-			"dashboardh",
-			"get_analytics",
-			"get_analy",
-			"name",
-			"get_an",
-			"business",
-			"get_anal",
-			"resize",
-			"chartj",
-			"grey",
-			"3px",
-			"totalv",
+			"border",
+			"defaul",
+			"login",
+			"helpi",
+			"str",
+			"check_p",
+			"currencie",
+			"get_cu",
+			"currencie",
+			"sort",
+			"<a",
+			"dashboardha",
+			"vert",
 			"total",
-			"adhol",
-			"whiteb",
-			".bar",
-			"date",
-			"start",
-			"howmanyd",
-			"get_an",
-			"chart",
-			"get_anal",
-			"address",
-			"upgrades",
-			"dashboard.h",
-			"replace",
-			"getstartedhan",
+			"pull-",
+			"update",
+			"six",
+			"three",
+			"form",
+			"ul",
+			"webki",
+			"dashbo",
+			"cookie",
+			"watch",
+			"sketch",
+			"ul ",
+			"ul",
+			"ul, ",
+			"height",
+			"heigh",
+			"80px",
+			"radius",
+			"rad",
+			"hover",
+			"13px",
+			"transpa",
+			"height",
+			"radius",
+			"radiu",
+			"16px",
+			"open",
+			"site",
+			"price",
+			"transac",
+			"footer",
 			"thin",
-			"dash",
-			"dashme",
-			"name",
-			"salesrepsi",
-			"loc",
-			"map2"
+			"font-w",
+			"font-size-sm",
+			"small",
+			"hr>",
+			"h2",
+			"tuple",
+			"total",
+			"h4",
+			"ul,",
+			"ul",
+			"clean",
+			"img",
+			"img {",
+			"strong",
+			"string",
+			"b {",
+			"img",
+			"ul, ol",
+			"ul",
+			"color",
+			"text",
+			"thead",
+			"600",
+			"border-top:",
+			"thead",
+			"head",
+			"border-top",
+			"label",
+			"body-col",
+			"small",
+			"headings-sm",
+			"heading-smal",
+			"small",
+			"radius",
+			"small",
+			"table",
+			"right"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -921,78 +886,23 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "web/bitusenet.py",
-					"settings":
-					{
-						"buffer_size": 7137,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "web/templates/index.html",
-					"settings":
-					{
-						"buffer_size": 811,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								537,
-								537
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
 					"file": "Gruntfile.js",
 					"settings":
 					{
-						"buffer_size": 6573,
+						"buffer_size": 7117,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2302,
-								2302
+								2931,
+								2931
 							]
 						],
 						"settings":
@@ -1002,25 +912,57 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 566.0,
+						"translation.y": 947.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "web/bootstrap/js/scaffolding.js",
+					"buffer": 1,
+					"file": "/Users/m/Dropbox/projects/bitusenet/templates/signup.html",
 					"settings":
 					{
-						"buffer_size": 61,
+						"buffer_size": 4527,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								54,
-								54
+								2598,
+								2603
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 625.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 2,
+					"file": "web/bootstrap/js/scaffolding.js",
+					"settings":
+					{
+						"buffer_size": 3914,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3324,
+								3324
 							]
 						],
 						"settings":
@@ -1032,83 +974,21 @@
 						"zoom_level": 1.0
 					},
 					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 0,
-			"sheets":
-			[
-				{
-					"buffer": 4,
-					"file": "web/bootstrap/less/variables.less",
-					"settings":
-					{
-						"buffer_size": 38716,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/LESS/LESS.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 65.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
 				},
 				{
-					"buffer": 5,
-					"file": "web/bootstrap/less/scaffolding.less",
-					"settings":
-					{
-						"buffer_size": 2644,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/LESS/LESS.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
+					"buffer": 3,
 					"file": "web/bootstrap/less/site.less",
 					"settings":
 					{
-						"buffer_size": 0,
+						"buffer_size": 13967,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								13494,
+								13494
 							]
 						],
 						"settings":
@@ -1118,35 +998,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "web/bootstrap/less/navbar.less",
-					"settings":
-					{
-						"buffer_size": 14663,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/LESS/LESS.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 370.0,
+						"translation.y": 8286.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
