@@ -236,7 +236,7 @@ $(document).ready(function() {
 
 	if (Modernizr.websockets) {
 		$("#socket").show();
-		var ws = new WebSocket("ws://http://ec2-54-221-32-214.compute-1.amazonaws.com/socket?address={{address}}");
+		var ws = new WebSocket("ws://ec2-54-221-32-214.compute-1.amazonaws.com/socket?address={{address}}");
 		ws.onopen = function() {
 			ws.send("{{address}}");
 		};
