@@ -25,9 +25,9 @@
 					<div class="collapse navbar-collapse" id="navbar-collapse-1">
 						<ul class="nav navbar-nav navbar-right">
 							{% if current_user %}
-								<li><a href="/dashboard" class="btn btn-default navbar-btn">Dashboard</a></li>
+								<li><a href="https://www.bitusenet.com/dashboard" class="btn btn-default navbar-btn">Dashboard</a></li>
 							{% else %}
-								<li><a href="/login" class="btn btn-default">Log In</a></li>
+								<li><a href="https://www.bitusenet.com/login" class="btn btn-default">Log In</a></li>
 							{% end %}								
 						</ul>					
 					</div>
@@ -181,7 +181,7 @@
 								<h3>Server Login</h3>
 								{% if errors == 'usernameexists' %}
 								<div class="form-group has-error" id="uname-group">
-									<label for="uname" class="control-label" id="uname-label">Username already exists. <a href="/login">Login?</a></label>
+									<label for="uname" class="control-label" id="uname-label">Username already exists. <a href="https://www.bitusenet.com/login">Login?</a></label>
 									<input type="text" name="uname" id="uname" class="form-control" tabindex="1" autofocus>
 								</div>
 								{% else %}

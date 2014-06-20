@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	{% include "modules/description.html" %}
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="{{ static_url('css/style.min.css') }}">
+	<title>Bitusenet • Usenet access for crypto currencies</title>
+</head>
+<body id="signup">
+
+	<section id="navbar-full">
+		<div id="navbar">
+			<nav class="navbar navbar-transparent navbar-absolute-top" role="navigation">
+				<div class="container">
+					<div class="navbar-header">
+						<a class="navbar-brand" href="/"><img src="/static/images/logo.png" width="50"></a>		
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+					</div>
+					<div class="collapse navbar-collapse" id="navbar-collapse-1">
+						<ul class="nav navbar-nav navbar-right">
+							{% if current_user %}
+								<li><a href="https://www.bitusenet.com/dashboard" class="btn btn-default navbar-btn">Dashboard</a></li>
+							{% else %}
+								<li><a href="https://www.bitusenet.com/login" class="btn btn-default">Log In</a></li>
+							{% end %}								
+						</ul>					
+					</div>
+				</div>
+			</nav>
+		</div>
+	</section>
+
+	<section id="first" class="container-fluid">
+		<div class="container">
+			<h1 class="white">Contact Us</h1>
+		</div>
+	</section>
+	
+	<section>
+	  <div class="container">
+	    <div class="row" style="margin-top:50px;margin-bottom:50px">
+	      <div class="col-xs-12">
+		<h4>Email</h4>
+		<p>
+		  <a href="mailto:support@bitusenet.com">support@bitusenet.com</a>
+		</p>
+		<h4>Twitter</h4>
+		<p>
+		  <a href="http://www.twitter.com/bitusenet">http://www.twitter.com/bitusenet.com</a>
+		</p>
+
+	      </div>
+	    </div>
+	  </div>
+	</section>
+
+	<footer class="container-fluid">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12">
+					<ul class="list-inline">
+						<li><a href="/tos">Terms of Service</a></li>
+						<li><a href="/privacy">Privacy Policy</a></li>
+						<li><a href="/support">Support</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+
+</body>	
+</html>

@@ -27,7 +27,7 @@
 
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav navbar-right">
-							<li><a href="/dashboard" class="btn btn-default">Dashboard</a></li>
+							<li><a href="https://www.bitusenet.com/dashboard" class="btn btn-default">Dashboard</a></li>
 						</ul>
 					</div>
 				</div>
@@ -71,7 +71,7 @@
 					<div class="row pricebox" id="socket">
 						<div class="col-xs-12">
 							<h4 class="sockettitle">This page will update when the coins are received</h4>
-							<p class="socketamount">Please send all coins within the next 30 minutes. If you need longer then that, <a href="/dashboard-add">check current pricing</a> from the dashboard. <p class="socketpay">You can also pay with <a href="/dashboard-add">different currencies.</a></p></p>
+							<p class="socketamount">Please send all coins within the next 30 minutes. If you need longer then that, <a href="https://www.bitusenet.com/dashboard-add">check current pricing</a> from the dashboard. <p class="socketpay">You can also pay with <a href="https://www.bitusenet.com/dashboard-add">different currencies.</a></p></p>
 
 						</div>
 					</div>
@@ -245,18 +245,18 @@ $(document).ready(function() {
 			if (data['active']) {
 				$(".socketheader").text("Active");
 				$(".sockettitle").text("Thank you. " + data['amount'] + " {{currency.upper()}} received");
-				$(".socketamount").html("Your account on the usenet server is active. <a href='/dashboard'>The dashboard</a> will give you the server information.");
+				$(".socketamount").html("Your account on the usenet server is active. <a href='https://www.bitusenet.com/dashboard'>The dashboard</a> will give you the server information.");
 				$(".socketpay").html("&nbsp;");
 				$(".socketstep1").removeClass('black');
 				$(".socketstep2").addClass('black');
 			} else {
 				$(".sockettitle").text("Thank you. " + data['amount'] + " {{currency.upper()}} received");
-				$(".socketamount").html("More coins are needed to activate your account. <a href='/dashboard-add'>The dashboard</a> will tell you the amount left.");
+				$(".socketamount").html("More coins are needed to activate your account. <a href='https://www.bitusenet.com/dashboard-add'>The dashboard</a> will tell you the amount left.");
 			}
 		};
 	} else {
 		$(".sockettitle").text("Your account will activate as soon as we receive the coins");
-		$(".socketamount").html("<a href='/dashboard'>The dashboard</a> will give you the server login information.");
+		$(".socketamount").html("<a href='https://www.bitusenet.com/dashboard'>The dashboard</a> will give you the server login information.");
 	}
 })
 
