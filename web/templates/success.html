@@ -236,7 +236,7 @@ $(document).ready(function() {
 
 	if (Modernizr.websockets) {
 		$("#socket").show();
-		var ws = new WebSocket("ws://www.bitusenet.com/socket?address={{address}}");
+		var ws = new WebSocket("wss://www.bitusenet.com/socket?address={{address}}");
 		ws.onopen = function() {
 			ws.send("{{address}}");
 		};
