@@ -19,7 +19,7 @@ import tornado.httpclient
 from variables import *
 
 clients = {}
-longname = {'btc':'bit', 'ltc':'lite', 'drk':'dark', 'ppc':'peer', 'vtc':'vert', 'doge':'doge', 'max':'max'}
+longname = {'btc':'bit', 'ltc':'lite', 'drk':'dark', 'ppc':'peer', 'vtc':'vert', 'doge':'doge', 'max':'max', 'rzr':'razor'}
 
 class Application(tornado.web.Application):
     def __init__(self):
@@ -147,8 +147,8 @@ class SignupHandler(BaseHandler):
 
         self.render('signup.html', errors=None, aff=aff, uid=uid, priceobject=price, price=tornado.escape.json_encode(price))
 
-    @tornado.web.asynchronous
-    @tornado.gen.engine
+#    @tornado.web.asynchronous
+#    @tornado.gen.engine
     def post(self):
         username = self.get_argument('uname', None)
         password = self.get_argument('password', None)
@@ -189,10 +189,31 @@ class SignupHandler(BaseHandler):
             return
 
         logging.info('making request for new addres for %s'%currency)
-        client = tornado.httpclient.AsyncHTTPClient()
-        response = yield tornado.gen.Task(client.fetch, 'http://ec2-54-82-35-88.compute-1.amazonaws.com:8000/new_address/%s'%currency)        
+
+        client = tornado.httpclient.HTTPClient()
+        try:
+            response = client.fetch('http://ec2-54-82-35-88.compute-1.amazonaws.com:8000/new_address/%s'%currency)
+        except tornado.httpclient.HTTPError as e:
+            logging.error('BIG error: %s'% e)
+            self.set_status(500)            
+            client.close()
+            return
+
         address = response.body
         logging.info('address received %s'%address)
+
+        """
+        client = tornado.httpclient.AsyncHTTPClient()
+        response = yield tornado.gen.Task(client.fetch, 'http://ec2-54-82-35-88.compute-1.amazonaws.com:8000/new_address/%s'%currency)        
+        if response.error:
+            logging.error('BIG error: %s'%response.error)
+            self.set_status(500)
+            self.finish()
+            return
+        else:
+            address = response.body
+            logging.info('address received %s'%address)
+        """
 
         # password salt and hash
         salt = uuid.uuid4().hex
@@ -226,8 +247,6 @@ class TransactionReceivedHandler(BaseHandler):
         currency = self.get_argument('currency')
         amount = self.get_argument('amount')
         active = self.get_argument('active')
-
-        print address, amount, currency
 
         if address in clients:
             clients[address]['object'].write_message(tornado.escape.json_encode({'amount':str(amount),'currency':currency, 'active':active}))
@@ -266,8 +285,8 @@ class DashboardTransactionsHandler(BaseHandler):
 
 
 class AddCoinHandler(BaseHandler):
-    @tornado.web.asynchronous
-    @tornado.gen.engine
+    #@tornado.web.asynchronous
+    #@tornado.gen.engine
     def get(self):
         currency = self.get_argument('currency')
 
@@ -279,9 +298,20 @@ class AddCoinHandler(BaseHandler):
 
         logging.info('making request for new addres for %s for user %s'%(currency, self.current_user['username']))
 
+        client = tornado.httpclient.HTTPClient()
+        try:
+            response = client.fetch('http://ec2-54-82-35-88.compute-1.amazonaws.com:8000/new_address/%s'%currency)
+        except tornado.httpclient.HTTPError as e:
+            logging.error("BIG error getting new coin: %s"%e)
+            self.set_status(500)
+            return
+        address = response.body
+
+        """
         client = tornado.httpclient.AsyncHTTPClient()        
         response = yield tornado.gen.Task(client.fetch, 'http://ec2-54-82-35-88.compute-1.amazonaws.com:8000/new_address/%s'%currency)
         address = response.body
+        """
 
         price = self.get_currency(currency)
         newaddress = [{'price':price, 'created':int(time.time()), 'currency':currency, 'sent':0, 'transactions':{}, 'timestamp': datetime.datetime.utcnow(), 'site':'bitusenet' }]
