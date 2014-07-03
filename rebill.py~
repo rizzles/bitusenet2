@@ -1,0 +1,12 @@
+import pymongo
+import datetime
+import time
+import tornado.httpclient
+
+mongoconn = pymongo.Connection('ec2-50-17-28-132.compute-1.amazonaws.com', 27017)
+mongo = mongoconn.bitusenet
+
+users = mongo.users.find()
+
+for user in users:
+    print user

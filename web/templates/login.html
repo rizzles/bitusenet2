@@ -17,7 +17,7 @@
 						<img src="/static/images/logolarge.png" width="100">
 					</a>
 					<form action="/login" method="POST" id="login-form">
-
+					{% module xsrf_form_html() %}
 						<div class="form-group" id="uname-group">
 							{% if errors == 'wronguname' %}
 							<label for="uname" class="control-label" id="uname-label">We could not find that username</label>

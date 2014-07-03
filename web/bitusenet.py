@@ -32,6 +32,7 @@ class Application(tornado.web.Application):
             (r"/tos", TosHandler),
             (r"/dmca", DmcaHandler),
             (r"/support", SupportHandler),
+            (r"/qrcode", QRCodeHandler),
 
             (r"/dashboard", DashboardHandler),
             (r"/dashboard-add", DashboardAddHandler),
@@ -45,12 +46,12 @@ class Application(tornado.web.Application):
             (r"/brand", BrandHandler),
         ]
         settings = dict(
-            cookie_secret="43oETzKXQAGaYdkL5gEmGeJJFuYh7EQnp2XdTP1o/Vo=",
+            cookie_secret="43oETzKXQAGaYqkL5gfmGeJJFuYh7sQnp2Xd4P1o/Vo=",
             login_url="/",
             template_path=os.path.join(os.path.dirname(__file__), "templates"),
             static_path=os.path.join(os.path.dirname(__file__), "static"),
             site_name='design',
-            xsrf_cookies=False,
+            xsrf_cookies=True,
             autoescape=None,
             debug=False,
             gzip=True
@@ -344,6 +345,11 @@ class DmcaHandler(BaseHandler):
 class SupportHandler(BaseHandler):
     def get(self):
         self.render('support.html')
+
+
+class QRCodeHandler(BaseHandler):
+    def get(self):
+        self.render('qrcode.html')
 
 
 class JavascriptHandler(BaseHandler):

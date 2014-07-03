@@ -171,7 +171,7 @@ $(document).ready(function() {
 	{% for k,v in current_user['price'].iteritems() %}
 
 	var {{v[-1]['currency']}}qrcodeone = new QRCode(document.getElementById("{{v[-1]['currency']}}qrcodeonemonth"), {
-	    text: "{{v[-1]['currency']}}coin:{{k}}?amount={{v[-1]['price']['onemonth']}}",
+	    text: "{{longname[v[-1]['currency']]}}coin:{{k}}?amount={{v[-1]['price']['onemonth']}}",
 	    width: 128,
 	    height: 128,
 	    colorDark : "#000000",
@@ -180,7 +180,7 @@ $(document).ready(function() {
 	});
 
 	var {{v[-1]['currency']}}qrcodethree = new QRCode(document.getElementById("{{v[-1]['currency']}}qrcodethreemonth"), {
-	    text: "{{v[-1]['currency']}}coin:{{k}}?amount={{v[-1]['price']['threemonth']}}",
+	    text: "{{longname[v[-1]['currency']]}}coin:{{k}}?amount={{v[-1]['price']['threemonth']}}",
 	    width: 128,
 	    height: 128,
 	    colorDark : "#000000",
@@ -189,7 +189,7 @@ $(document).ready(function() {
 	});
 
 	var {{v[-1]['currency']}}qrcodesix = new QRCode(document.getElementById("{{v[-1]['currency']}}qrcodesixmonth"), {
-	    text: "{{v[-1]['currency']}}coin:{{k}}?amount={{v[-1]['price']['sixmonth']}}",
+	    text: "{{longname[v[-1]['currency']]}}coin:{{k}}?amount={{v[-1]['price']['sixmonth']}}",
 	    width: 128,
 	    height: 128,
 	    colorDark : "#000000",
@@ -198,7 +198,7 @@ $(document).ready(function() {
 	});
 
 	var {{v[-1]['currency']}}qrcodetwelve = new QRCode(document.getElementById("{{v[-1]['currency']}}qrcodetwelvemonth"), {
-	    text: "{{v[-1]['currency']}}coin:{{k}}?amount={{v[-1]['price']['twelvemonth']}}",
+	    text: "{{longname[v[-1]['currency']]}}coin:{{k}}?amount={{v[-1]['price']['twelvemonth']}}",
 	    width: 128,
 	    height: 128,
 	    colorDark : "#000000",
