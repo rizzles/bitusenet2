@@ -19,7 +19,7 @@ import tornado.httpclient
 from variables import *
 
 clients = {}
-longname = {'btc':'bit', 'ltc':'lite', 'drk':'dark', 'ppc':'peer', 'vtc':'vert', 'doge':'doge', 'max':'max', 'rzr':'razor'}
+longname = {'btc':'bit', 'ltc':'lite', 'drk':'dark', 'ppc':'peer', 'vtc':'vert', 'doge':'doge', 'max':'max', 'rzr':'razor', 'vrc':'veri'}
 
 class Application(tornado.web.Application):
     def __init__(self):
