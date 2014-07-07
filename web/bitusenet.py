@@ -295,7 +295,7 @@ class AddCoinHandler(BaseHandler):
         for k,v in self.current_user['addresses'].iteritems():
             if k == currency:
                 logging.info('currency %s already found for user %s'%(currency, self.current_user['username']))
-                self.redirect('/dashboard-add')
+                self.redirect('/dashboard-add?currency=%s'%currency)
                 return
 
         logging.info('making request for new addres for %s for user %s'%(currency, self.current_user['username']))
