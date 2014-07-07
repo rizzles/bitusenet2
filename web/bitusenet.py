@@ -290,7 +290,7 @@ class AddCoinHandler(BaseHandler):
     #@tornado.web.asynchronous
     #@tornado.gen.engine
     def get(self):
-        currency = self.get_argument('currency', 'btc')
+        currency = self.get_argument('currency')
 
         for k,v in self.current_user['addresses'].iteritems():
             if k == currency:
