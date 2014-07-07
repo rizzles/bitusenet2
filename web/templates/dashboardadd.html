@@ -172,6 +172,7 @@ $(document).ready(function() {
 	});
 
 	{% for k,v in current_user['price'].iteritems() %}
+	{% if v[-1]['currency'] == currency %}
 
 	var {{v[-1]['currency']}}qrcodeone = new QRCode(document.getElementById("{{v[-1]['currency']}}qrcodeonemonth"), {
 	    text: "{{longname[v[-1]['currency']]}}coin:{{k}}?amount={{v[-1]['price']['onemonth']}}",
@@ -208,7 +209,7 @@ $(document).ready(function() {
 	    colorLight : "#ffffff",
 	    correctLevel : QRCode.CorrectLevel.H
 	});
-
+	{% end %}
 	{% end %}
 })
 
