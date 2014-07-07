@@ -275,8 +275,9 @@ class DashboardHandler(BaseHandler):
 class DashboardAddHandler(BaseHandler):
     @tornado.web.authenticated
     def get(self):
+        currency = self.get_argument('currency', 'btc')
         self.check_price_age()
-        self.render('dashboardadd.html', longname=longname)
+        self.render('dashboardadd.html', longname=longname, currency=currency)
 
 
 class DashboardTransactionsHandler(BaseHandler):
@@ -317,7 +318,7 @@ class AddCoinHandler(BaseHandler):
         price = self.get_currency(currency)
         newaddress = [{'price':price, 'created':int(time.time()), 'currency':currency, 'sent':0, 'transactions':{}, 'timestamp': datetime.datetime.utcnow(), 'site':'bitusenet' }]
         self.mongodb.users.update({'_id':self.current_user['_id']}, {'$set':{'price.%s'%address: newaddress, 'addresses.%s'%currency: address, 'transactions.%s'%address: []}}, True)
-        self.redirect('/dashboard-add')
+        self.redirect('/dashboard-add?currency=%s'%currency)
 
 
 class LogoutHandler(BaseHandler):

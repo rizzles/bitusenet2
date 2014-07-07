@@ -69,6 +69,7 @@
 											<li><a href="https://www.bitusenet.com/add-coin?currency=ltc"><img src="/static/images/ltclogosmall@2x.png" width="32"> Pay with Litecoin</a></li>
 											<li><a href="https://www.bitusenet.com/add-coin?currency=drk"><img src="/static/images/drklogosmall@2x.png" width="32"> Pay with Darkcoin</a></li>
 											<li><a href="https://www.bitusenet.com/add-coin?currency=ppc"><img src="/static/images/ppclogosmall@2x.png" width="32"> Pay with Peercoin</a></li>
+											<li><a href="https://www.bitusenet.com/add-coin?currency=vrc"><img src="/static/images/vrclogosmall@2x.png" width="32"> Pay with Vericoin</a></li>
 										</ul>
 									</div>
 									<div class="col-xs-6">
@@ -81,7 +82,8 @@
 									</div>
 								</div>
 							</div>
-							{% for k,v in current_user['price'].iteritems() %}		
+							{% for k,v in current_user['price'].iteritems() %}
+							{% if v[-1]['currency'] == currency %}	
 							<div class="frame add">
 								<div class="row">
 									<div class="col-xs-8">
@@ -143,7 +145,8 @@
 										</h4>
 									</div>
 								</div>
-							</div>							
+							</div>	
+							{% end %}						
 							{% end %}							
 						</div>
 					</div>
