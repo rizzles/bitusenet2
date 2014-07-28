@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	{% include "modules/description.html" %}
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="{{ static_url('css/style.min.css') }}">
+	<title>Bitusenet • Usenet access for crypto currencies</title>
+</head>
+<body id="login">
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+					<a href="/">
+						<img src="/static/images/logolarge.png" width="100">
+					</a>
+					<h2 style="color: rgba(255,255,255,0.8)">Password Reset</h2>
+					<p style="color: rgba(255,255,255,0.6)">Changing your password will require you to update your usenet reader software with the new password.</p>
+					<form method="post" action="/passwordreset">
+					      {% module xsrf_form_html() %}
+					      <input type="hidden" value="{{resetid}}" name="resetid">
+					      {% if errors == "passwordempty" %}
+					      <div id="passworderror" class="error">What do you want for your new password?</div>
+					      {% else %}
+					      <div id="passworderror" class="error">&nbsp;</div>
+					      {% end %}
+					      <div class="form-group" id="email-group">
+						<label>New Password</label>
+						<input type="password" class="form-control" tabindex="1" name="password" id="password" maxlength="30">
+					      </div>
+				</div>
+			</div>
+			<div class="row">
+			  <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+			    <button type="submit" class="btn btn-default" style="margin-top:40px;" tabindex="2" id="password_button">Reset Password</button>
+			    </form>
+			  </div>
+			</div>
+		</div>
+	</section>
+	<div class="footer">
+		<ul class="list-inline">
+			<li><a href="/support">Support</a></li>
+			<li><a href="/tos">Terms of Service</a></li>
+			<li><a href="/privacy">Privacy Policy</a></li>
+		</ul>
+	</div>
+
+</body>
+</html>

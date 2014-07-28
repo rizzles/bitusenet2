@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	{% include "modules/description.html" %}
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="{{ static_url('css/style.min.css') }}">
+	<title>Bitusenet • Usenet access for crypto currencies</title>
+</head>
+<body id="login">
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+					<a href="/">
+						<img src="/static/images/logolarge.png" width="100">
+					</a>
+					<form method="post" action="/reset" id="signupform"> 
+					{{ xsrf_form_html() }}
+					  <div>
+					        {% if errors == "emailempty" %}
+						<div id="emailerror" class="white error">We need an email address</div>
+						{% else %}
+						<div id="emailerror" class="white error">&nbsp;</div>
+						{% end %}
+						<div class="form-group" id="email-group">						
+						  <label>Email Address</label>
+						  <input type="text" class="form-control" tabindex="1" name="email" id="email">
+						</div>
+					  </div>
+
+
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+					  <button type="submit" class="btn btn-default pull-left" style="margin-top:40px;" tabindex="2" id="email_button">Reset Password</button>
+				</div>
+			</div>
+			</form>
+		</div>
+	</section>
+	<div class="footer">
+		<ul class="list-inline">
+			<li><a href="/support">Support</a></li>
+			<li><a href="/tos">Terms of Service</a></li>
+			<li><a href="/privacy">Privacy Policy</a></li>
+		</ul>
+	</div>
+
+</body>
+<script src="{{ static_url('js/javascript.min.js') }}"></script>
+<script>
+
+$(document).ready(function() {
+
+});
+
+</script>
+</html>
