@@ -35,6 +35,7 @@ class Application(tornado.web.Application):
             (r"/dmca", DmcaHandler),
             (r"/support", SupportHandler),
             (r"/qrcode", QRCodeHandler),
+            (r"/faq", FaqHandler),
 
             (r"/dashboard", DashboardHandler),
             (r"/dashboard-add", DashboardAddHandler),
@@ -145,6 +146,11 @@ class LoginHandler(BaseHandler):
 
         logging.info("Could not match password on login %s, %s"%(uname, password))
         self.render('login.html', errors='wrongpassword', aff=aff, uid=uid)
+
+
+class FaqHandler(BaseHandler):
+    def get(self):
+        self.render('faq.html')
 
 
 class ResetHandler(BaseHandler):

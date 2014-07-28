@@ -9,7 +9,6 @@
 	<title>Bitusenet • Usenet access for crypto currencies</title>
 </head>
 <body id="signup">
-
 	<section id="navbar-full">
 		<div id="navbar">
 			<nav class="navbar navbar-transparent navbar-absolute-top" role="navigation">
@@ -27,7 +26,8 @@
 							{% if current_user %}
 								<li><a href="https://www.bitusenet.com/dashboard" class="btn btn-default navbar-btn">Dashboard</a></li>
 							{% else %}
-								<li><a href="https://www.bitusenet.com/login" class="btn btn-default">Log In</a></li>
+								<li><a href="https://www.bitusenet.com/login">Log In</a></li>
+								<li><a href="https://www.bitusenet.com/signup" class="btn btn-default navbar-btn">Sign Up</a></li>
 							{% end %}								
 						</ul>					
 					</div>
@@ -38,42 +38,9 @@
 
 	<section id="first" class="container-fluid">
 		<div class="container">
-			<h1 class="white">Contact Us</h1>
+			<h1 style="color: rgba(255,255,255,0.8)">FAQ</h1>
+			<p style="color: rgba(255,255,255,0.6)">Frequently Asked Questions</p>
 		</div>
 	</section>
-	
-	<section>
-	  <div class="container">
-	    <div class="row" style="margin-top:50px;margin-bottom:50px">
-	      <div class="col-xs-12">
-		<h4>Email</h4>
-		<p>
-		  <a href="mailto:support@bitusenet.com">support@bitusenet.com</a>
-		</p>
-		<h4>Twitter</h4>
-		<p>
-		  <a href="http://www.twitter.com/bitusenet">http://www.twitter.com/bitusenet</a>
-		</p>
-
-	      </div>
-	    </div>
-	  </div>
-	</section>
-
-	<footer class="container-fluid">
-		<div class="container">
-			<div class="row">
-				<div class="col-xs-12">
-					<ul class="list-inline">
-						<li><a href="/tos">Terms of Service</a></li>
-						<li><a href="/privacy">Privacy Policy</a></li>
-						<li><a href="/support">Support</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</footer>
-
-
-</body>	
+</body>
 </html>
