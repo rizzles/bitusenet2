@@ -15,7 +15,6 @@ users = mongo.users.find()
 
 for user in users:
     if user['billing'] < datetime.datetime.utcnow() and user['active']:
-        print user['username'], user['billing']
-        #print authdb.execute("DELETE FROM auth.logins WHERE username = %s", user['username'])
-        print authdb.get("SELECT * FROM auth.logins WHERE username = %s", user['username'])
-        #mongo.users.update({'username':user['username']},{"$set":{'active':False}})
+        print user['username'], user['billing'], datetime.datetime.utcnow()
+        print authdb.execute("DELETE FROM auth.logins WHERE username = %s", user['username'])
+        mongo.users.update({'username':user['username']},{"$set":{'active':False}})

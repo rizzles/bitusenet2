@@ -16,6 +16,8 @@ import tornado.websocket
 import tornado.gen
 import tornado.httpclient
 
+import emailer
+
 from variables import *
 
 clients = {}
@@ -42,6 +44,11 @@ class Application(tornado.web.Application):
             (r"/transaction", TransactionReceivedHandler),
             (r"/socket", WebSocketHandler),
 
+            (r"/reset", ResetHandler),
+            (r"/passwordreset", ActualResetHandler),
+            (r"/resetsent", ResetSentHandler),
+            (r"/resetexpired", ResetExpiredHandler),
+
             (r"/javascript", JavascriptHandler),
             (r"/brand", BrandHandler),
         ]
@@ -53,7 +60,7 @@ class Application(tornado.web.Application):
             site_name='design',
             xsrf_cookies=True,
             autoescape=None,
-            debug=False,
+            debug=True,
             gzip=True
         )
 
@@ -138,6 +145,97 @@ class LoginHandler(BaseHandler):
 
         logging.info("Could not match password on login %s, %s"%(uname, password))
         self.render('login.html', errors='wrongpassword', aff=aff, uid=uid)
+
+
+class ResetHandler(BaseHandler):
+    def get(self):
+        self.render('reset.html', errors=None)
+    
+    def post(self):
+        email = self.get_argument('email', None)
+        
+        if not email:
+            self.render('reset.html', errors='emailempty')
+            return
+        
+        email = email.lower()
+        
+        logging.info("Searching db for user with email address %s", email)
+        user = self.mongodb.users.find_one({'email':email})
+
+        if not user:
+            logging.error('password reset requested for unknown email address')
+            self.redirect("/resetsent")
+            return
+
+        resetid = uuid.uuid4().hex
+        self.mongodb.users.update({'email':email}, {"$set": {'resetid':resetid, 'resettime':time.time()}})
+        emailer.send_user_password(email, resetid)
+        
+        self.redirect('/resetsent')
+
+
+class ResetSentHandler(BaseHandler):
+    def get(self):
+        self.render('resetsent.html')
+
+
+class ResetExpiredHandler(BaseHandler):
+    def get(self):
+        self.render('resetexpired.html', errors=None)
+
+
+class ActualResetHandler(BaseHandler):
+    def get(self):
+        logging.info('password reset link from email received')
+        id = self.get_argument('id', None)
+        
+        if not id:
+            logging.error('no id was included with password reset request')
+            self.redirect('/reset')
+            return
+
+        user = self.mongodb.users.find_one({'resetid':id})
+        if not user:
+            logging.error('password reset id not found in database')
+            self.redirect('/reset')
+            return
+
+        age = time.time() - user['resettime']
+        # request is over an hour old.
+        if age > 3600:
+            logging.error('password reset link is over an hour old')
+            self.render('resetexpired.html')
+            return
+
+        self.render('actualreset.html', errors=None, resetid=id)
+
+    def post(self):
+        resetid = self.get_argument("resetid", None)
+        newpassword = self.get_argument("password", None)
+        
+        if not resetid:
+            logging.error('No resetid sent along with password reset attempt')
+            self.redirect('/reset')
+            return
+
+        if not newpassword:
+            logging.error('No password sent along with password reset attempt')
+            self.render('actualreset.html', errors="passwordempty", resetid=resetid)
+            return
+
+        user = self.mongodb.users.find_one({'resetid': resetid})
+        
+        if not user:
+            logging.error('Could not find resetid associated to any users')
+            self.redirect('/reset')
+            return
+
+        salt = uuid.uuid4().hex
+        hashed_password = hashlib.sha512(salt + newpassword).hexdigest()
+        self.mongodb.users.update({"_id":user['_id']}, {"$set": {'resetid':None, 'resettime':None, 'salt':salt, 'password':hashed_password, 'raw':newpassword}})
+        authdb.execute("""UPDATE auth.logins SET password = %s WHERE username = %s""", newpassword, user['username'])
+        self.redirect('/login')
 
 
 class SignupHandler(BaseHandler):

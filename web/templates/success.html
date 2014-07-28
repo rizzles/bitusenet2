@@ -199,7 +199,7 @@
 
 $(document).ready(function() {
 	var qrcodeone = new QRCode(document.getElementById("qrcodeonemonth"), {
-	    text: "{{currency}}coin:{{address}}?amount={{priceobject[currency]['bitusenet']['onemonth']}}",
+	    text: "{{longname[currency]}}coin:{{address}}?amount={{priceobject[currency]['bitusenet']['onemonth']}}",
 	    width: 128,
 	    height: 128,
 	    colorDark : "#000000",
@@ -208,7 +208,7 @@ $(document).ready(function() {
 	});
 
 	var qrcodethree = new QRCode(document.getElementById("qrcodethreemonth"), {
-	    text: "{{currency}}coin:{{address}}?amount={{priceobject[currency]['bitusenet']['threemonth']}}",
+	    text: "{{longname[currency]}}coin:{{address}}?amount={{priceobject[currency]['bitusenet']['threemonth']}}",
 	    width: 128,
 	    height: 128,
 	    colorDark : "#000000",
@@ -217,7 +217,7 @@ $(document).ready(function() {
 	});
 
 	var qrcodesix = new QRCode(document.getElementById("qrcodesixmonth"), {
-	    text: "{{currency}}coin:{{address}}?amount={{priceobject[currency]['bitusenet']['sixmonth']}}",
+	    text: "{{longname[currency]}}coin:{{address}}?amount={{priceobject[currency]['bitusenet']['sixmonth']}}",
 	    width: 128,
 	    height: 128,
 	    colorDark : "#000000",
@@ -226,7 +226,7 @@ $(document).ready(function() {
 	});
 
 	var qrcodetwelve = new QRCode(document.getElementById("qrcodetwelvemonth"), {
-	    text: "{{currency}}coin:{{address}}?amount={{priceobject[currency]['bitusenet']['twelvemonth']}}",
+	    text: "{{longname[currency]}}coin:{{address}}?amount={{priceobject[currency]['bitusenet']['twelvemonth']}}",
 	    width: 128,
 	    height: 128,
 	    colorDark : "#000000",

@@ -199,17 +199,17 @@
 								{% if errors == 'usernameexists' %}
 								<div class="form-group has-error" id="uname-group">
 									<label for="uname" class="control-label" id="uname-label">Username already exists. <a href="https://www.bitusenet.com/login">Login?</a></label>
-									<input type="text" name="uname" id="uname" class="form-control" tabindex="1" autofocus>
+									<input type="text" name="uname" id="uname" class="form-control" tabindex="1" maxlength="30" autofocus>
 								</div>
 								{% else %}
 								<div class="form-group" id="uname-group">
 									<label for="uname" class="control-label" id="uname-label">Username</label>
-									<input type="text" name="uname" id="uname" class="form-control" tabindex="1">
+									<input type="text" name="uname" id="uname" class="form-control" tabindex="1" maxlength="30">
 								</div>
 								{% end %}
 								<div class="form-group" id="password-group">
 									<label for="password" class="control-label" id="password-label">Password</label>
-									<input type="password" name="password" id="password" class="form-control" tabindex="2">
+									<input type="password" name="password" id="password" class="form-control" tabindex="2" maxlength="30">
 								</div>
 								<div class="form-group" id="email-group">
 									<label for="password" class="control-label" id="email-label">Email (Optional)</label>
