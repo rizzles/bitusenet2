@@ -83,18 +83,31 @@
 								</div>
 							</div>
 							{% for k,v in current_user['price'].iteritems() %}
-							{% if v[-1]['currency'] == currency %}	
+							{% if v['currency'] == currency %}	
 							<div class="frame add">
 								<div class="row">
 									<div class="col-xs-8">
-										<h4 class="nomargin"><img src="/static/images/{{v[-1]['currency']}}logosmall@2x.png" width="32"> Add 30 days</h4>
-										<p>Send {{v[-1]['price']['onemonth']-v[-1]['sent']}} {{v[-1]['currency'].upper()}} to this address in the next 30 minutes. Time will be credited as soon as we receive the coin.</p>
-										<a href="{{longname[v[-1]['currency']]}}coin:{{k}}?amount={{v[-1]['price']['onemonth']}}&label=bitusenet.com&message=One%20month%20usenet%20access">{{ k }}</a>
+										<h4 class="nomargin"><img src="/static/images/{{v['currency']}}logosmall@2x.png" width="32"> Add 30 days</h4>
+										{% if current_user['transactions'][k] and current_user['transactions'][k][-1].has_key('leftover') and current_user['transactions'][k][-1]['leftover'] %}
+										<p>Send {{v['price']['onemonth'] - current_user['transactions'][k][-1]['leftover']}} {{v['currency'].upper()}} to this address in the next 30 minutes. Time will be credited as soon as we receive the coin.</p>
+										{% else %}
+										<p>Send {{v['price']['onemonth']}} {{v['currency'].upper()}} to this address in the next 30 minutes. Time will be credited as soon as we receive the coin.</p>
+										{% end %}
+
+										{% if current_user['transactions'][k] and current_user['transactions'][k][-1].has_key('leftover') and current_user['transactions'][k][-1]['leftover'] %}				
+										<a href="{{longname[v['currency']]}}coin:{{k}}?amount={{v['price']['onemonth'] - current_user['transactions'][k][-1]['leftover']}}&label=bitusenet.com&message=One%20month%20usenet%20access">{{ k }}</a>
+										{% else %}
+										<a href="{{longname[v['currency']]}}coin:{{k}}?amount={{v['price']['onemonth']}}&label=bitusenet.com&message=One%20month%20usenet%20access">{{ k }}</a>
+										{% end %}
 									</div>
 									<div class="col-xs-4 col-md-3">
-										<div id="{{v[-1]['currency']}}qrcodeonemonth"></div>
+										<div id="{{v['currency']}}qrcodeonemonth"></div>
 										<h4 class="total">
-											{{v[-1]['price']['onemonth']-v[-1]['sent']}} {{v[-1]['currency'].upper()}}
+										  {% if current_user['transactions'][k] and current_user['transactions'][k][-1].has_key('leftover') and current_user['transactions'][k][-1]['leftover'] %}
+											{{v['price']['onemonth'] - current_user['transactions'][k][-1]['leftover']}} {{v['currency'].upper() }}
+										  {% else %}
+											{{v['price']['onemonth']}} {{v['currency'].upper()}}										  
+										  {% end %}
 										</h4>
 									</div>
 								</div>
@@ -102,14 +115,27 @@
 							<div class="frame add">
 								<div class="row">
 									<div class="col-xs-8">
-										<h4 class="nomargin"><img src="/static/images/{{v[-1]['currency']}}logosmall@2x.png" width="32"> Add 90 days <span class="gray">(10% savings)</h4>
-										<p>Send {{v[-1]['price']['threemonth']-v[-1]['sent']}} {{v[-1]['currency'].upper()}} to this address in the next 30 minutes. Time will be credited as soon as we receive the coin.</p>
-										<a href="{{longname[v[-1]['currency']]}}coin:{{k}}?amount={{v[-1]['price']['threemonth']}}&label=bitusenet.com&message=Three%20month%20usenet%20access">{{ k }}</a>
+										<h4 class="nomargin"><img src="/static/images/{{v['currency']}}logosmall@2x.png" width="32"> Add 90 days <span class="gray">(10% savings)</h4>
+										{% if current_user['transactions'][k] and current_user['transactions'][k][-1].has_key('leftover') and current_user['transactions'][k][-1]['leftover'] %}
+										<p>Send {{v['price']['threemonth'] - current_user['transactions'][k][-1]['leftover']}} {{v['currency'].upper()}} to this address in the next 30 minutes. Time will be credited as soon as we receive the coin.</p>
+										{% else %}
+										<p>Send {{v['price']['threemonth']}} {{v['currency'].upper()}} to this address in the next 30 minutes. Time will be credited as soon as we receive the coin.</p>
+										{% end %}
+
+										{% if current_user['transactions'][k] and current_user['transactions'][k][-1].has_key('leftover') and current_user['transactions'][k][-1]['leftover'] %}				
+										<a href="{{longname[v['currency']]}}coin:{{k}}?amount={{v['price']['threemonth'] - current_user['transactions'][k][-1]['leftover']}}&label=bitusenet.com&message=Three%20month%20usenet%20access">{{ k }}</a>
+										{% else %}
+										<a href="{{longname[v['currency']]}}coin:{{k}}?amount={{v['price']['threemonth']}}&label=bitusenet.com&message=Three%20month%20usenet%20access">{{ k }}</a>
+										{% end %}
 									</div>
 									<div class="col-xs-4 col-md-3">
-										<div id="{{v[-1]['currency']}}qrcodethreemonth"></div>
+										<div id="{{v['currency']}}qrcodethreemonth"></div>
 										<h4 class="total">
-											{{v[-1]['price']['threemonth']-v[-1]['sent']}} {{v[-1]['currency'].upper()}}
+										  {% if current_user['transactions'][k] and current_user['transactions'][k][-1].has_key('leftover') and current_user['transactions'][k][-1]['leftover'] %}
+											{{v['price']['threemonth'] - current_user['transactions'][k][-1]['leftover']}} {{v['currency'].upper()}}
+										  {% else %}
+											{{v['price']['threemonth']}} {{v['currency'].upper()}}
+										  {% end %}
 										</h4>
 									</div>
 								</div>
@@ -118,14 +144,27 @@
 							<div class="frame add">
 								<div class="row">
 									<div class="col-xs-8">
-										<h4 class="nomargin"><img src="/static/images/{{v[-1]['currency']}}logosmall@2x.png" width="32"> Add 180 days <span class="gray">(15% savings)</h4>
-										<p>Send {{v[-1]['price']['sixmonth']-v[-1]['sent']}} {{v[-1]['currency'].upper()}} to this address in the next 30 minutes. Time will be credited as soon as we receive the coin.</p>
-										<a href="{{longname[v[-1]['currency']]}}coin:{{k}}?amount={{v[-1]['price']['sixmonth']}}&label=bitusenet.com&message=Six%20month%20usenet%20access">{{ k }}</a>
+										<h4 class="nomargin"><img src="/static/images/{{v['currency']}}logosmall@2x.png" width="32"> Add 180 days <span class="gray">(15% savings)</h4>
+										{% if current_user['transactions'][k] and current_user['transactions'][k][-1].has_key('leftover') and current_user['transactions'][k][-1]['leftover'] %}
+										<p>Send {{v['price']['sixmonth'] - current_user['transactions'][k][-1]['leftover']}} {{v['currency'].upper()}} to this address in the next 30 minutes. Time will be credited as soon as we receive the coin.</p>
+										{% else %}
+										<p>Send {{v['price']['sixmonth']}} {{v['currency'].upper()}} to this address in the next 30 minutes. Time will be credited as soon as we receive the coin.</p>
+										{% end %}
+
+										{% if current_user['transactions'][k] and current_user['transactions'][k][-1].has_key('leftover') and current_user['transactions'][k][-1]['leftover'] %}
+										<a href="{{longname[v['currency']]}}coin:{{k}}?amount={{v['price']['sixmonth'] - current_user['transactions'][k][-1]['leftover']}}&label=bitusenet.com&message=Six%20month%20usenet%20access">{{ k }}</a>
+										{% else %}
+										<a href="{{longname[v['currency']]}}coin:{{k}}?amount={{v['price']['sixmonth']}}&label=bitusenet.com&message=Six%20month%20usenet%20access">{{ k }}</a>
+										{% end %}
 									</div>
 									<div class="col-xs-4 col-md-3">
-										<div id="{{v[-1]['currency']}}qrcodesixmonth"></div>
+										<div id="{{v['currency']}}qrcodesixmonth"></div>
 										<h4 class="total">
-											{{v[-1]['price']['sixmonth']-v[-1]['sent']}} {{v[-1]['currency'].upper()}}
+										  {% if current_user['transactions'][k] and current_user['transactions'][k][-1].has_key('leftover') and current_user['transactions'][k][-1]['leftover'] %}
+											{{v['price']['sixmonth'] - current_user['transactions'][k][-1]['leftover']}} {{v['currency'].upper()}}
+										  {% else %}
+											{{v['price']['sixmonth']}} {{v['currency'].upper()}}
+										  {% end %}
 										</h4>
 									</div>
 								</div>
@@ -134,14 +173,27 @@
 							<div class="frame add">
 								<div class="row">
 									<div class="col-xs-8">
-										<h4 class="nomargin"><img src="/static/images/{{v[-1]['currency']}}logosmall@2x.png" width="32"> Add 365 days <span class="gray">(20% savings)</h4>
-										<p>Send {{v[-1]['price']['twelvemonth']-v[-1]['sent']}} {{v[-1]['currency'].upper()}} to this address in the next 30 minutes. Time will be credited as soon as we receive the coin.</p>
-										<a href="{{longname[v[-1]['currency']]}}coin:{{k}}?amount={{v[-1]['price']['twelvemonth']}}&label=bitusenet.com&message=One%20year%20usenet%20access">{{ k }}</a>
+										<h4 class="nomargin"><img src="/static/images/{{v['currency']}}logosmall@2x.png" width="32"> Add 365 days <span class="gray">(20% savings)</h4>
+										{% if current_user['transactions'][k] and current_user['transactions'][k][-1].has_key('leftover') and current_user['transactions'][k][-1]['leftover'] %}
+										<p>Send {{v['price']['twelvemonth'] - current_user['transactions'][k][-1]['leftover']}} {{v['currency'].upper()}} to this address in the next 30 minutes. Time will be credited as soon as we receive the coin.</p>
+										{% else %}
+										<p>Send {{v['price']['twelvemonth']}} {{v['currency'].upper()}} to this address in the next 30 minutes. Time will be credited as soon as we receive the coin.</p>
+										{% end %}
+
+										{% if current_user['transactions'][k] and current_user['transactions'][k][-1].has_key('leftover') and current_user['transactions'][k][-1]['leftover'] %}
+										<a href="{{longname[v['currency']]}}coin:{{k}}?amount={{v['price']['twelvemonth'] - current_user['transactions'][k][-1]['leftover']}}&label=bitusenet.com&message=One%20year%20usenet%20access">{{ k }}</a>
+										{% else %}
+										<a href="{{longname[v['currency']]}}coin:{{k}}?amount={{v['price']['twelvemonth']}}&label=bitusenet.com&message=One%20year%20usenet%20access">{{ k }}</a>
+										{% end %}
 									</div>
 									<div class="col-xs-4 col-md-3">
-										<div id="{{v[-1]['currency']}}qrcodetwelvemonth"></div>
+										<div id="{{v['currency']}}qrcodetwelvemonth"></div>
 										<h4 class="total">
-											{{v[-1]['price']['twelvemonth']-v[-1]['sent']}} {{v[-1]['currency'].upper()}}
+										  {% if current_user['transactions'][k] and current_user['transactions'][k][-1].has_key('leftover') and current_user['transactions'][k][-1]['leftover'] %}
+											{{v['price']['twelvemonth'] - current_user['transactions'][k][-1]['leftover']}} {{v['currency'].upper()}}
+										  {% else %}
+											{{v['price']['twelvemonth']}} {{v['currency'].upper()}}
+										  {% end %}
 										</h4>
 									</div>
 								</div>
@@ -172,10 +224,14 @@ $(document).ready(function() {
 	});
 
 	{% for k,v in current_user['price'].iteritems() %}
-	{% if v[-1]['currency'] == currency %}
+	{% if v['currency'] == currency %}
 
-	var {{v[-1]['currency']}}qrcodeone = new QRCode(document.getElementById("{{v[-1]['currency']}}qrcodeonemonth"), {
-	    text: "{{longname[v[-1]['currency']]}}coin:{{k}}?amount={{v[-1]['price']['onemonth']}}",
+	var {{v['currency']}}qrcodeone = new QRCode(document.getElementById("{{v['currency']}}qrcodeonemonth"), {
+            {% if current_user['transactions'][k] and current_user['transactions'][k][-1].has_key('leftover') and current_user['transactions'][k][-1]['leftover'] %}
+	    text: "{{longname[v['currency']]}}coin:{{k}}?amount={{v['price']['onemonth'] - current_user['transactions'][k][-1]['leftover']}}",
+            {% else %}
+	    text: "{{longname[v['currency']]}}coin:{{k}}?amount={{v['price']['onemonth']}}",
+            {% end %}
 	    width: 128,
 	    height: 128,
 	    colorDark : "#000000",
@@ -183,8 +239,12 @@ $(document).ready(function() {
 	    correctLevel : QRCode.CorrectLevel.H
 	});
 
-	var {{v[-1]['currency']}}qrcodethree = new QRCode(document.getElementById("{{v[-1]['currency']}}qrcodethreemonth"), {
-	    text: "{{longname[v[-1]['currency']]}}coin:{{k}}?amount={{v[-1]['price']['threemonth']}}",
+	var {{v['currency']}}qrcodethree = new QRCode(document.getElementById("{{v['currency']}}qrcodethreemonth"), {
+            {% if current_user['transactions'][k] and current_user['transactions'][k][-1].has_key('leftover') and current_user['transactions'][k][-1]['leftover'] %}
+	    text: "{{longname[v['currency']]}}coin:{{k}}?amount={{v['price']['threemonth'] - current_user['transactions'][k][-1]['leftover']}}",
+            {% else %}
+	    text: "{{longname[v['currency']]}}coin:{{k}}?amount={{v['price']['threemonth']}}",
+            {% end %}
 	    width: 128,
 	    height: 128,
 	    colorDark : "#000000",
@@ -192,8 +252,12 @@ $(document).ready(function() {
 	    correctLevel : QRCode.CorrectLevel.H
 	});
 
-	var {{v[-1]['currency']}}qrcodesix = new QRCode(document.getElementById("{{v[-1]['currency']}}qrcodesixmonth"), {
-	    text: "{{longname[v[-1]['currency']]}}coin:{{k}}?amount={{v[-1]['price']['sixmonth']}}",
+	var {{v['currency']}}qrcodesix = new QRCode(document.getElementById("{{v['currency']}}qrcodesixmonth"), {
+            {% if current_user['transactions'][k] and current_user['transactions'][k][-1].has_key('leftover') and current_user['transactions'][k][-1]['leftover'] %}
+	    text: "{{longname[v['currency']]}}coin:{{k}}?amount={{v['price']['sixmonth'] - current_user['transactions'][k][-1]['leftover']}}",
+            {% else %}
+	    text: "{{longname[v['currency']]}}coin:{{k}}?amount={{v['price']['sixmonth']}}",
+            {% end %}
 	    width: 128,
 	    height: 128,
 	    colorDark : "#000000",
@@ -201,8 +265,12 @@ $(document).ready(function() {
 	    correctLevel : QRCode.CorrectLevel.H
 	});
 
-	var {{v[-1]['currency']}}qrcodetwelve = new QRCode(document.getElementById("{{v[-1]['currency']}}qrcodetwelvemonth"), {
-	    text: "{{longname[v[-1]['currency']]}}coin:{{k}}?amount={{v[-1]['price']['twelvemonth']}}",
+	var {{v['currency']}}qrcodetwelve = new QRCode(document.getElementById("{{v['currency']}}qrcodetwelvemonth"), {
+            {% if current_user['transactions'][k] and current_user['transactions'][k][-1].has_key('leftover') and current_user['transactions'][k][-1]['leftover'] %}
+	    text: "{{longname[v['currency']]}}coin:{{k}}?amount={{v['price']['twelvemonth'] - current_user['transactions'][k][-1]['leftover']}}",
+            {% else %}
+	    text: "{{longname[v['currency']]}}coin:{{k}}?amount={{v['price']['twelvemonth']}}",
+            {% end %}
 	    width: 128,
 	    height: 128,
 	    colorDark : "#000000",

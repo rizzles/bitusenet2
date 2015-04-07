@@ -35,11 +35,11 @@
 							{% for k,v in current_user['price'].iteritems() %}
 							<div class="frame">
 									<div class="pull-left transimage">
-										<img src="/static/images/{{v[-1]['currency']}}logolarge.png" width="50">
+										<img src="/static/images/{{v['currency']}}logolarge.png" width="50">
 									</div>
 
-									<h4 class="nomargin" style="padding-top: 5px;">{{longname[v[-1]['currency']].title()}}coin Address</h4>
-									<a href="{{longname[v[-1]['currency']]}}coin:{{k}}">{{k}}</a>
+									<h4 class="nomargin" style="padding-top: 5px;">{{longname[v['currency']].title()}}coin Address</h4>
+									<a href="{{longname[v['currency']]}}coin:{{k}}">{{k}}</a>
 
 									{% if not current_user['transactions'][k] %}
 									<div class="transactionblock" style="margin-left: 70px;">
