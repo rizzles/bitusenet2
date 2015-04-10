@@ -13,9 +13,15 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+					{% if aff %}
+					<a href="/?aff={{aff}}">
+						<img src="/static/images/logolarge.png" width="100">
+					</a>
+					{% else %}
 					<a href="/">
 						<img src="/static/images/logolarge.png" width="100">
 					</a>
+					{% end %}
 					<form action="/login" method="POST" id="login-form">
 					{% module xsrf_form_html() %}
 						<div class="form-group" id="uname-group">
@@ -37,8 +43,13 @@
 						</div>
 
 						<div class="form-group" style="margin-top: 50px;">
+							{% if aff %}
+							<a href="https://www.bitusenet.com/signup?aff={{aff}}" tabindex="4" class="btn btn-default opac2">Sign Up</a>
+							<button type="submit" tabindex="3" class="btn btn-primary pull-right" id="login-btn">Login</button>
+							{% else %}
 							<a href="https://www.bitusenet.com/signup" tabindex="4" class="btn btn-default opac2">Sign Up</a>
 							<button type="submit" tabindex="3" class="btn btn-primary pull-right" id="login-btn">Login</button>
+							{% end %}
 						</div>
 					</form>
 				</div>
@@ -47,10 +58,17 @@
 	</section>
 	<div class="footer" style="width: 600px; text-align:center">
 		<ul class="list-inline">
+			{% if aff %}
+			<li><a href="/support?aff={{aff}}">Support</a></li>
+			<li style="border-left: 1px solid rgba(255,255,255,0.2);padding-left:6px;"><a href="/tos?aff={{aff}}">Terms of Service</a></li>
+			<li style="border-left: 1px solid rgba(255,255,255,0.2);padding-left:6px;"><a href="/privacy?aff={{aff}}">Privacy Policy</a></li>
+			<li style="border-left: 1px solid rgba(255,255,255,0.2);padding-left:6px;"><a href="/reset?aff={{aff}}">Reset Password</a></li>
+			{% else %}
 			<li><a href="/support">Support</a></li>
 			<li style="border-left: 1px solid rgba(255,255,255,0.2);padding-left:6px;"><a href="/tos">Terms of Service</a></li>
 			<li style="border-left: 1px solid rgba(255,255,255,0.2);padding-left:6px;"><a href="/privacy">Privacy Policy</a></li>
 			<li style="border-left: 1px solid rgba(255,255,255,0.2);padding-left:6px;"><a href="/reset">Reset Password</a></li>
+			{% end %}
 		</ul>
 	</div>
 </body>	

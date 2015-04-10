@@ -27,8 +27,13 @@
 							{% if current_user %}
 								<li><a href="https://www.bitusenet.com/dashboard" class="btn btn-default navbar-btn">Dashboard</a></li>
 							{% else %}
+								{% if aff %}
+								<li><a href="https://www.bitusenet.com/login?aff={{aff}}">Log In</a></li>
+								<li><a href="https://www.bitusenet.com/signup?aff={{aff}}" class="btn btn-default navbar-btn">Sign Up</a></li>
+								{% else %}
 								<li><a href="https://www.bitusenet.com/login">Log In</a></li>
 								<li><a href="https://www.bitusenet.com/signup" class="btn btn-default navbar-btn">Sign Up</a></li>
+								{% end %}
 							{% end %}								
 						</ul>					
 					</div>
@@ -49,9 +54,15 @@
 			<div class="hidden-xs col-sm-4">
 				<div class="row">
 					<div class="col-sm-6 col-sm-offset-4">
+						{% if aff %}
+						<a href="/?aff={{aff}}">
+							<img src="/static/images/logo@2x.png" class="img-responsive">
+						</a>
+						{% else %}
 						<a href="/">
 							<img src="/static/images/logo@2x.png" class="img-responsive">
 						</a>
+						{% end %}
 					</div>
 				</div>
 			</div>
@@ -78,7 +89,11 @@
 				<p>Email <a href="mailto:support@bitusenet.com">support@bitusenet.com</a> anytime</p>
 				<hr>
 				<h3>Do you accept any other form of payment other than bitcoin?</h3>
+				{% if aff %}
+				<p>Yes, crypto currencies only though. We now accept <a href="https://www.bitusenet.com/signup?aff={{aff}}">Litecoin</a>, <a href="https://www.bitusenet.com/signup?aff={{aff}}">Dogecoin</a>, <a href="https://www.bitusenet.com/signup?aff={{aff}}">Darkcoin</a>, <a href="https://www.bitusenet.com/signup?aff={{aff}}">Maxcoin</a>, <a href="https://www.bitusenet.com/signup?aff={{aff}}">Peercoin</a>, <a href="https://www.bitusenet.com/signup?aff={{aff}}">Vertcoin</a>, <a href="https://www.bitusenet.com/signup?aff={{aff}}">Razorcoin</a>, <a href="https://www.bitusenet.com/signup?aff={{aff}}">Vericoin</a>. More are being added all the time.</p>
+				{% else %}
 				<p>Yes, crypto currencies only though. We now accept <a href="https://www.bitusenet.com/signup">Litecoin</a>, <a href="https://www.bitusenet.com/signup">Dogecoin</a>, <a href="https://www.bitusenet.com/signup">Darkcoin</a>, <a href="https://www.bitusenet.com/signup">Maxcoin</a>, <a href="https://www.bitusenet.com/signup">Peercoin</a>, <a href="https://www.bitusenet.com/signup">Vertcoin</a>, <a href="https://www.bitusenet.com/signup">Razorcoin</a>, <a href="https://www.bitusenet.com/signup">Vericoin</a>. More are being added all the time.</p>
+				{% end %}
 				<hr>
 				<h3>How long does it take to activate my account?</h3>
 				<p>Seconds. Our backend runs off of 0 confirmations on all the coin networks. As soon as you send the coins, you'll be able to start using the usenet server.
@@ -91,11 +106,19 @@
 			<div class="row">
 				<div class="col-xs-12">
 					<ul class="list-inline">
+						{% if aff %}
+						<li><a href="/tos?aff={{aff}}">Terms of Service</a></li>
+						<li style="border-left: 1px solid rgba(255,255,255,0.2);padding-left:6px;"><a href="/privacy?aff={{aff}}">Privacy Policy</a></li>
+						<li style="border-left: 1px solid rgba(255,255,255,0.2);padding-left:6px;"><a href="/support?aff={{aff}}">Support</a></li>
+						<li style="border-left: 1px solid rgba(255,255,255,0.2);padding-left:6px;"><a href="/reset?aff={{aff}}">Reset Password</a></li>
+						<li style="border-left: 1px solid rgba(255,255,255,0.2);padding-left:6px;"><a href="/faq?aff={{aff}}">FAQ</a></li>
+						{% else %}
 						<li><a href="/tos">Terms of Service</a></li>
 						<li style="border-left: 1px solid rgba(255,255,255,0.2);padding-left:6px;"><a href="/privacy">Privacy Policy</a></li>
 						<li style="border-left: 1px solid rgba(255,255,255,0.2);padding-left:6px;"><a href="/support">Support</a></li>
 						<li style="border-left: 1px solid rgba(255,255,255,0.2);padding-left:6px;"><a href="/reset">Reset Password</a></li>
 						<li style="border-left: 1px solid rgba(255,255,255,0.2);padding-left:6px;"><a href="/faq">FAQ</a></li>
+						{% end %}
 					</ul>
 				</div>
 			</div>
